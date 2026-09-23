@@ -1,0 +1,40 @@
+{
+  "id": "weapon.umbrella",
+  "kind": "Weapon",
+  "weaponSlot": "Primary",
+  "grantedAbilityItemIds": [ "ability.umbrella" ],
+  "displayName": "Umbrella",
+  "behaviorId": "builtin.weapon.revolver",
+  "ammo": {
+    "maxAmmo": 4,
+    "ammoPerUse": 1,
+    "projectilesPerUse": 1,
+    "useDelaySourceTicks": 27,
+    "reloadSourceTicks": 45,
+    "spreadDegrees": 1.0,
+    "minProjectileSpeed": 20.0,
+    "additionalProjectileSpeed": 0.0,
+    "autoReloads": true,
+    "ammoRegenPerTick": 0,
+    "refillsAllAtOnce": true
+  },
+  "combat": {
+    "fireSoundName": "RevolverSnd",
+    "playerKnockback": {
+      "impulsePerUse": 2.5,
+      "airborneVerticalScale": 0.5,
+      "groundedVerticalScale": 0.5
+    }
+  },
+  "presentation": {
+    "worldSpriteName": "CivvieUmbrellaS",
+    "recoilSpriteName": "CivvieUmbrellaRecoilS",
+    "reloadSpriteName": "CivvieUmbrellaReloadS",
+    "hudSpriteName": "CivvieUmbrellaAmmoS",
+    "weaponOffsetX": -16.0,
+    "weaponOffsetY": -25.0,
+    "recoilDurationSourceTicks": 6,
+    "reloadDurationSourceTicks": 30,
+    "blueTeamHudFrameOffset": 1
+  }
+}

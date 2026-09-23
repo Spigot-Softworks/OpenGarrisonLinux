@@ -1,0 +1,48 @@
+{
+  "id": "sniper",
+  "displayName": "Sniper",
+  "runtime": {
+    "playerClass": "Sniper",
+    "supportsExperimentalAcquiredWeapon": true,
+    "primaryWeaponKillFeedSprite": "RifleKL"
+  },
+  "movement": {
+    "maxHealth": 120,
+    "collisionLeft": -6.0,
+    "collisionTop": -8.0,
+    "collisionRight": 7.0,
+    "collisionBottom": 24.0,
+    "runPower": 0.9,
+    "jumpStrength": 8.3,
+    "maxAirJumps": 0,
+    "tauntLengthFrames": 12
+  },
+  "presentation": {
+    "spritePrefix": "Sniper",
+    "standSuffix": "StandS",
+    "runSuffix": "RunS",
+    "jumpSuffix": "JumpS",
+    "leanLeftSuffix": "LeanLS",
+    "leanRightSuffix": "LeanRS",
+    "tauntSuffix": "TauntS",
+    "humiliationSuffix": "HS",
+    "deadSuffix": "DeadS",
+    "intelSuffix": "IntelS",
+    "scopedSuffix": "CrouchS"
+  },
+  "loadouts": {
+    "sniper.stock": {
+      "id": "sniper.stock",
+      "displayName": "Stock",
+      "primary": {
+        "defaultItemId": "weapon.rifle",
+        "itemIds": [ "weapon.rifle", "weapon.bow" ],
+        "switchPolicy": "primary_swap_station",
+        "selectionPersistence": "same_class_loadout"
+      },
+      "secondary": { "itemId": "weapon.sniper-smg" },
+      "abilities": [ "ability.experimental-ltd-passive", "ability.experimental-ltd-rage" ]
+    }
+  },
+  "defaultLoadoutId": "sniper.stock"
+}

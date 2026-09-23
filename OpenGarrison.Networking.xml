@@ -1,0 +1,203 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OpenGarrison.Networking</name>
+    </assembly>
+    <members>
+        <member name="T:OpenGarrison.Networking.Protocol64ConnectionContainer">
+            <summary>
+            Default backend-neutral protocol-64 connection container. It coordinates
+            outbound delivery scheduling, inbound semantic ordering, and stream recovery;
+            a concrete backend only needs to move complete frames and honor the selected
+            stream/lane plus recovery requests.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Networking.Protocol64OutboundFrame">
+            <summary>
+            A complete protocol-64 frame ready to be handed to a backend. The backend is
+            responsible for putting the frame on the stream identified by the scheduler.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Networking.Protocol64OutboundFrame.#ctor(System.ReadOnlyMemory{System.Byte},OpenGarrison.Protocol.Protocol64FrameHeader,OpenGarrison.Protocol.Protocol64DeliveryDescriptor,System.String)">
+            <summary>
+            A complete protocol-64 frame ready to be handed to a backend. The backend is
+            responsible for putting the frame on the stream identified by the scheduler.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Networking.Protocol64ReceivedFrame">
+            <summary>
+            A complete protocol-64 frame delivered by a backend. StreamSequence is a
+            backend/container sequence, deliberately separate from Protocol64 FrameId:
+            FrameId is global protocol identity while ordering is scoped to a stream.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Networking.Protocol64ReceivedFrame.#ctor(System.ReadOnlyMemory{System.Byte},OpenGarrison.Protocol.Protocol64FrameHeader,OpenGarrison.Protocol.Protocol64DeliveryDescriptor,System.Int32,System.Int32,System.UInt64,System.String)">
+            <summary>
+            A complete protocol-64 frame delivered by a backend. StreamSequence is a
+            backend/container sequence, deliberately separate from Protocol64 FrameId:
+            FrameId is global protocol identity while ordering is scoped to a stream.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Networking.Protocol64NetworkTelemetry">
+            <summary>
+            Thread-safe, privacy-safe protocol-64 counters. It stores no player names,
+            payloads, or endpoint addresses and can therefore be exported with normal
+            connection diagnostics.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Networking.IProtocol64QuicSocketBackend">
+            <summary>
+            Optional native socket seam for the logical QUIC container. The container
+            does not open a socket by itself, which keeps its scheduling and recovery
+            behavior deterministic on hosts without native QUIC support.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Networking.Protocol64QuicStreamSelection">
+            <summary>
+            A deterministic logical-to-QUIC stream binding. StreamId is an in-memory
+            stand-in for the native QUIC stream ID until a socket backend binds it.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Networking.Protocol64QuicStreamSelection.#ctor(System.Int32,OpenGarrison.Networking.Protocol64StreamKey,OpenGarrison.Networking.Protocol64QuicStreamRole,System.Int32,System.Boolean,System.Boolean,System.Net.Quic.QuicStreamType)">
+            <summary>
+            A deterministic logical-to-QUIC stream binding. StreamId is an in-memory
+            stand-in for the native QUIC stream ID until a socket backend binds it.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Networking.Protocol64QuicConnectionContainer">
+            <summary>
+            Protocol-64's backend-specific QUIC slice. It composes the existing
+            scheduler and recovery state machines without changing either one.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Networking.Protocol64QuicConnectionContainer.SelectStream(OpenGarrison.Networking.Protocol64StreamKey)">
+            <summary>
+            Returns the stable logical stream for a scheduled delivery. Control and
+            Input each get one ordered stream; unordered deliveries get the lane
+            selected by the existing scheduler; LastWins gets a datagram lane when
+            explicitly available, otherwise a replaceable fallback stream.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Networking.Protocol64QuicConnectionContainer.AllocatePeerRetransmitStream(OpenGarrison.Protocol.ChannelType,OpenGarrison.Protocol.Protocol64DeliveryKind,System.Int32)">
+            <summary>
+            Allocates a physical bidirectional stream reserved for a peer's
+            retransmit request. The logical key remains the original channel/lane;
+            the runtime sends a response header first so the receiver can associate
+            this physical stream with that logical lane.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Networking.Protocol64QuicConnectionContainer.OpenNativeConnectionAsync(System.Threading.CancellationToken)">
+            <summary>
+            Invokes the optional native hook only when the caller explicitly asks
+            for it. No socket is required by the logical container or its tests.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Networking.Protocol64QuicConnectionRuntime">
+            <summary>
+            Native QUIC I/O loop for protocol 64. The logical container remains the
+            owner of delivery semantics; this type owns QUIC stream lifetime, complete
+            frame reads/writes, and the stream-fault bridge back into that container.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Networking.Protocol64QuicConnectionRuntime.EnqueueFrame(System.ReadOnlyMemory{System.Byte},System.String)">
+            <summary>
+            Enqueues an already encoded, complete protocol-64 frame for the native
+            QUIC connection. This is the backend handoff used by the server's
+            protocol-aware outbound dispatcher; the frame is revalidated here so a
+            caller cannot bypass schema delivery metadata or envelope limits.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Networking.Protocol64ReceiveScheduler">
+            <summary>
+            Applies delivery semantics after a backend has delivered a complete frame.
+            It owns only semantic ordering/deduplication; it never parses a transport.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Networking.Protocol64ConnectionRecovery">
+            <summary>
+            The transport-independent part of the recovery state machine. A stream fault
+            requests a stream repair; a repeated fault before that repair completes, or a
+            control/connection fault, escalates to a protocol error.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Networking.Protocol64ChannelScheduler">
+            <summary>
+            Backend-neutral outbound scheduling. Reliable frames are never silently
+            discarded: capacity returns Backpressured and leaves every accepted frame in
+            its lane. LastWins frames use a keyed mailbox, so an older pending state can
+            be replaced by a newer one without growing the queue.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Server.Protocol64WebSocketOptions.MaxReliableQueueFrames">
+            <summary>
+            Upper bound for accepted reliable frames waiting for the WebSocket
+            writer. Reliable frames are never discarded to enforce this bound;
+            enqueueing beyond it fails explicitly with backpressure.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Server.Protocol64WebSocketOptions.MaxReliableQueueBytes">
+            <summary>
+            Upper bound for encoded bytes owned by the reliable queue.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Server.Protocol64WebSocketOptions.FaultCallbackByKind">
+            <summary>
+            Optional typed callback for a complete WebSocket message that cannot be
+            deserialized. The default path still logs and ignores the first bad
+            message according to the protocol-64 recovery state machine.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Server.Protocol64WebSocketOptions.WarningLogger">
+            <summary>
+            Receives a warning for a complete WebSocket message that is not a valid
+            protocol-64 frame. The default deliberately writes a concise warning to
+            stderr; server integration can replace it with its logger.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Server.Protocol64WebSocketOptions.ReopenAsync">
+            <summary>
+            Optional reconnect hook. The connection remains in Recovering state when
+            this is absent, allowing the next complete WebSocket message to prove that
+            the stream is usable. A replacement is attempted at most MaxWsRetries times.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Server.Protocol64WebSocketConnection">
+             <summary>
+             Protocol-64 WebSocket connection container.
+            
+             This type intentionally does not participate in the legacy server transport
+             interfaces. It owns complete WebSocket messages, protocol-64 framing, outbound
+             delivery mailboxes, and the malformed-frame recovery state machine so that the
+             canonical backend can be integrated independently of the old UDP/WS adapter.
+             </summary>
+        </member>
+        <member name="M:OpenGarrison.Server.Protocol64WebSocketConnection.QueueReliableFrame(System.ReadOnlyMemory{System.Byte})">
+            <summary>
+            Queues a validated, copied protocol-64 frame. Copying at the ownership
+            boundary prevents a caller from changing bytes after reliable acceptance.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Server.Protocol64WebSocketConnection.PublishLastWinsFrame(System.String,System.ReadOnlyMemory{System.Byte})">
+            <summary>
+            Publishes a validated, copied protocol-64 frame into a per-key mailbox.
+            Replacing an existing key is intentional LastWins behavior, not a reliable
+            queue drop, and is counted by LastWinsReplacementCount.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Server.Protocol64WebSocketConnection.RunSendLoopAsync(System.Threading.CancellationToken)">
+            <summary>
+            Runs the single WebSocket writer. Reliable frames are sent before pending
+            LastWins frames. An accepted reliable frame remains owned by this
+            container until SendAsync succeeds or throws.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Server.Protocol64WebSocketConnection.ReceiveAsync(System.Threading.CancellationToken)">
+            <summary>
+            Reads exactly one complete binary WebSocket message and decodes exactly one
+            protocol-64 frame from it. A malformed message is reported and ignored once;
+            a second consecutive invalid message transitions the connection to
+            ProtocolError and sends a WebSocket protocol-error close.
+            </summary>
+        </member>
+    </members>
+</doc>

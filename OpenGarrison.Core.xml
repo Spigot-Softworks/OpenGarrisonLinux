@@ -1,0 +1,1096 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OpenGarrison.Core</name>
+    </assembly>
+    <members>
+        <member name="T:OpenGarrison.Core.AudioPacketHistory">
+            <summary>Packet redundancy lets a latest-value transport coalesce frames without losing normal audio.</summary>
+        </member>
+        <member name="T:OpenGarrison.Core.AudioPlaybackBuffer">
+            <summary>Bounded, ordered playout with redundancy recovery, loss concealment and latency recovery.</summary>
+        </member>
+        <member name="T:OpenGarrison.Core.StreamingPcmResampler">
+            <summary>Incremental interleaved PCM resampling and fixed frame assembly; retains fractional phase across callbacks.</summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.BotBrainController">
+            <summary>
+            The per-bot tick driver. Each bot gets one BotBrainController instance.
+            Think() reads world state and returns a PlayerInputSnapshot. The shared
+            bot adapter staggers full decisions and advances cached navigation between
+            them before the server or offline simulation advances.
+            </summary>
+        </member>
+        <member name="F:OpenGarrison.Core.BotBrain.BotBrainController.RepathIntervalTicks">
+            <summary>
+            How often (in ticks) the bot reconsiders its path.
+            </summary>
+        </member>
+        <member name="F:OpenGarrison.Core.BotBrain.BotBrainController.ObjectiveReevalIntervalTicks">
+            <summary>
+            How often (in ticks) the bot re-evaluates its objective.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.BotBrainController.#ctor(System.Boolean)">
+            <summary>
+            Diagnostic/test affordance for exercising the graphless runtime path
+            even when the current level has a shipped OG2 navigation graph.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BotBrain.BotBrainController.ForceObjectiveNavigationForDiagnostics">
+            <summary>
+            Test-only seam for validating navigation with role-specific objective
+            overrides disabled. Production callers leave this false so Engineer
+            defense and Medic support behavior remain unchanged.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BotBrain.BotBrainController.DisableCombatForDiagnostics">
+            <summary>
+            Test-only seam for separating navigation/body-traffic failures from
+            combat targeting. Production callers leave this false; it does not
+            alter shipped combat behavior.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BotBrain.BotBrainController.LastNavigationGraphSource">
+            <summary>
+            Non-building source used for the current alpha graph attachment. This
+            lets the server distinguish a warmed in-memory graph from a shipped graph.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BotBrain.BotBrainController.RequiresPerTickNavigationThink">
+            <summary>
+            Runtime-certified contacts are schedules measured one simulation tick at a
+            time. The client may batch ordinary bot thinking for performance, but must
+            advance the entire contact edge one simulation tick at a time. In
+            particular, stopping the fast path while airborne leaves the cached input
+            running ahead of the edge state and hides the landing handoff from the
+            controller.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.BotBrainController.RequiresPerTickCombatThink(OpenGarrison.Core.SimulationWorld)">
+            <summary>
+            Awareness-gated combat must be reevaluated on each simulation tick so
+            cached fire/aim input cannot bypass the sampled Spy reaction window.
+            The deadline is stored in simulation frames, therefore this promotion
+            does not depend on the normal expensive-think cadence.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BotBrain.BotBrainController.RequiresImmediateNavigationThink">
+            <summary>
+            A batched client must promote a bot whose alpha route was cleared back
+            into the next full brain pass. Cached steering cannot reconstruct the
+            objective target or choose a new graph attachment on its own.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.BotBrainController.Think(OpenGarrison.Core.PlayerEntity,OpenGarrison.Core.SimulationWorld,OpenGarrison.Core.PlayerTeam,System.Collections.Generic.IReadOnlyDictionary{System.Byte,OpenGarrison.Core.PlayerTeam})">
+            <summary>
+            Produce a PlayerInputSnapshot for this bot for the current tick.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.BotBrainController.ThinkRuntimeContact(OpenGarrison.Core.PlayerEntity,OpenGarrison.Core.SimulationWorld,OpenGarrison.Core.PlayerTeam)">
+            <summary>
+            Advance the already-selected navigation route at physics-tick frequency.
+            OG2 contact edges need this for measured jump pulses; top-down walk edges
+            need it so their two-axis waypoint direction is refreshed instead of
+            reusing one stale input until the next expensive brain pass. This is
+            intentionally separate from Think: neither path reruns combat targeting
+            or a full objective search every simulation tick.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.BotBrainController.TryAdvanceCachedNavigation(OpenGarrison.Core.PlayerEntity,OpenGarrison.Core.SimulationWorld,OpenGarrison.Core.PlayerTeam,OpenGarrison.Core.PlayerInputSnapshot,OpenGarrison.Core.PlayerInputSnapshot@)">
+            <summary>
+            Advance only the already-selected graph edge for a bot whose expensive
+            objective/target think is intentionally in another scheduler batch.
+            This keeps edge timers, stuck detection, and jump pulses in physics-tick
+            time without rerunning objective evaluation or A*.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.BotBrainController.Reset">
+            <summary>
+            Reset the bot brain state. Call on respawn or team change.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.BotBrainController.ApplyTopDownAllySeparation(OpenGarrison.Core.SimulationWorld,OpenGarrison.Core.PlayerEntity,OpenGarrison.Core.PlayerTeam,OpenGarrison.Core.BotBrain.SteeringOutput@)">
+            <summary>
+            Add a small deterministic lane bias when same-team top-down bots are
+            crowding one another.  This only changes movement axes: combat aim and
+            fire/use decisions remain owned by the normal brain.  Every candidate
+            bias is checked through the live body collision probe before it is
+            emitted, so traffic separation cannot turn a solid corner into a new
+            movement owner.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.BotInputSynthesizer">
+            <summary>
+            Assembles a PlayerInputSnapshot from steering output, aim position, and combat decisions.
+            This is the final step: all the bot's thinking collapses into the same input struct
+            that a human player's keyboard/mouse would produce.
+            </summary>
+        </member>
+        <member name="F:OpenGarrison.Core.BotBrain.BotInputSynthesizer.MinExplosiveFireRange">
+            <summary>
+            Minimum engagement range (don't fire point-blank with explosives).
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.NavGraph">
+            <summary>
+            A lightweight waypoint graph built from level geometry.
+            Nodes are walkable positions; edges encode how to traverse between them.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.NavGraph.FindNearestObjectiveApproachNode(System.Int32,System.Single,System.Single,System.Nullable{OpenGarrison.Core.PlayerClass},System.Collections.Generic.IReadOnlySet{OpenGarrison.Core.BotBrain.NavEdgeBlock},System.Nullable{OpenGarrison.Core.PlayerTeam},System.Boolean,System.Single,System.Single)">
+            <summary>
+            Selects a nearby support node that has a valid incoming edge to an
+            objective anchor. This is used when the live body is close enough to
+            be attached to the anchor itself, but is still outside the gameplay
+            marker. A one-node path cannot provide the final approach movement.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.NavGraph.WarmAlphaObjectiveRoutes(OpenGarrison.Core.SimpleLevel,System.Collections.Generic.IReadOnlyList{OpenGarrison.Core.PlayerClass})">
+            <summary>
+            Populate the immutable alpha path cache for the first objective routes
+            used by a practice roster. This is a load-time optimization only: it
+            does not change edge eligibility, costs, or the path returned by A*.
+            Keeping this work in the map warmup prevents the first live bot think
+            from paying all class/team route allocations in one simulation frame.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.NavGraph.FindNearestNode(System.Single,System.Single)">
+            <summary>
+            Find the nearest node to a world position.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.NavGraph.FindNearestTraversalStartNodeForGoal(System.Single,System.Single,System.Single,System.Single,System.Int32,System.Nullable{OpenGarrison.Core.PlayerClass},System.Collections.Generic.IReadOnlySet{OpenGarrison.Core.BotBrain.NavEdgeBlock},System.Nullable{OpenGarrison.Core.PlayerTeam},System.Boolean,System.Int32,System.Single)">
+            <summary>
+            Select the nearest traversal attachment that can actually reach the
+            requested goal under the supplied navigation profile. This is used for
+            recovery after a missed contact, where the geometrically nearest node
+            can belong to a small local component while a slightly farther node is
+            the valid continuation of the route.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.NavGraph.FindNearestReachableObjectiveNode(System.Single,System.Single,System.Int32,System.Nullable{OpenGarrison.Core.PlayerClass},System.Collections.Generic.IReadOnlySet{OpenGarrison.Core.BotBrain.NavEdgeBlock},System.Nullable{OpenGarrison.Core.PlayerTeam},System.Boolean,System.Single)">
+            <summary>
+            Finds the nearest reachable objective anchor near a logical objective
+            coordinate. Capture points may expose several assigned zone anchors;
+            a class/team-filtered route can legitimately use any one of them, but
+            must never degrade to a nearby walkable proxy outside the capture
+            volume while an objective anchor is reachable.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.NavGraph.FindPath(System.Int32,System.Int32,System.Nullable{OpenGarrison.Core.PlayerClass},System.Collections.Generic.IReadOnlySet{OpenGarrison.Core.BotBrain.NavEdgeBlock},System.Nullable{OpenGarrison.Core.PlayerTeam},System.Boolean,System.Double,System.String,System.Int32)">
+            <summary>
+            A* shortest path from startNode to goalNode.
+            Returns null if no path exists.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.NavPathSearchWorkspace">
+            <summary>
+            Per-worker scratch storage for A*. Bot brains may search concurrently, so
+            this is thread-local rather than shared. Reusing it avoids allocating the
+            node-sized arrays and priority queue on every recovery or dynamic route.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.NavNode">
+            <summary>
+            A node in the navigation graph — a walkable position in world space.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.NavNode.#ctor(System.Single,System.Single,OpenGarrison.Core.BotBrain.NavNodeKind,System.Nullable{System.Int32})">
+            <summary>
+            A node in the navigation graph — a walkable position in world space.
+            </summary>
+        </member>
+        <member name="F:OpenGarrison.Core.BotBrain.NavNodeKind.Ledge">
+            <summary>Surface endpoint on a solid or platform.</summary>
+        </member>
+        <member name="F:OpenGarrison.Core.BotBrain.NavNodeKind.Spawn">
+            <summary>Spawn point.</summary>
+        </member>
+        <member name="F:OpenGarrison.Core.BotBrain.NavNodeKind.Objective">
+            <summary>Objective location (intel base, control point, etc.).</summary>
+        </member>
+        <member name="F:OpenGarrison.Core.BotBrain.NavNodeKind.Surface">
+            <summary>Mid-surface waypoint for long platforms.</summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.NavEdge">
+            <summary>
+            An edge connecting two nodes with a traversal type and cost.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.NavEdge.#ctor(System.Int32,OpenGarrison.Core.BotBrain.NavEdgeKind,System.Single,OpenGarrison.Core.BotBrain.NavEdgeCompletion,System.Int32,System.Int32,System.Single,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,OpenGarrison.Core.BotBrain.NavEdgeLaunchRecipe,System.Nullable{System.Boolean},System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            An edge connecting two nodes with a traversal type and cost.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.NavEdgeAirControlMode">
+            <summary>
+            Horizontal input schedule after a certified jump has consumed its launch
+            input. The schedule is part of the OG2 contact proof because faster classes
+            can otherwise cross a narrow landing window while holding the launch key.
+            </summary>
+        </member>
+        <member name="F:OpenGarrison.Core.BotBrain.NavEdgeKind.Walk">
+            <summary>Horizontal walk on the same surface.</summary>
+        </member>
+        <member name="F:OpenGarrison.Core.BotBrain.NavEdgeKind.Jump">
+            <summary>Jump required (edge-trigger Up).</summary>
+        </member>
+        <member name="F:OpenGarrison.Core.BotBrain.NavEdgeKind.Fall">
+            <summary>Fall off a ledge (no input needed beyond walking off).</summary>
+        </member>
+        <member name="F:OpenGarrison.Core.BotBrain.NavEdgeKind.Dropdown">
+            <summary>Drop through a dropdown platform (hold Down).</summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.NavGraphBuilder">
+            <summary>
+            Compatibility entry point for building a lightweight BotBrain navigation graph.
+            The implementation lives in BotNavigationAssetBuilder so the same graph can be
+            generated offline, serialized, shipped, and loaded without changing runtime users.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.NavPath">
+            <summary>
+            The result of an A* pathfind — an ordered sequence of waypoint node indices.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BotBrain.NavPath.TotalCost">
+            <summary>Total path cost from start to goal.</summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BotBrain.NavPath.Count">
+            <summary>Number of waypoints in the path.</summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BotBrain.NavPath.CurrentIndex">
+            <summary>Index of the waypoint currently being pursued.</summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BotBrain.NavPath.IsComplete">
+            <summary>Whether all waypoints have been reached.</summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BotBrain.NavPath.CurrentNode">
+            <summary>The node index of the current waypoint, or -1 if complete.</summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BotBrain.NavPath.GoalNode">
+            <summary>The node index of the final waypoint.</summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BotBrain.NavPath.RemainingCount">
+            <summary>How many waypoints remain including the current one.</summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.NavPath.Advance">
+            <summary>
+            Advance to the next waypoint. Call this when the bot has reached the current one.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.NavPath.GetWaypoint(System.Int32)">
+            <summary>
+            Get the node index at a specific position in the path.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.Og2LocalContactGraphBuilder">
+            <summary>
+            Builds the contact-first alpha graph. Geometry proposes a small set of
+            standable surface samples; OG2 PlayerEntity movement is the authority that
+            emits directional contacts between them.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.Og2LocalContactGraphBuilder.SurfaceSpatialIndex">
+            <summary>
+            Broad-phase index for contact probes. The old implementation tested
+            every other surface for every probe launch, which made a local sweep
+            quadratic in the number of extracted surfaces. The index only narrows
+            that conservative query; OG2 movement remains the authority for the
+            emitted contact.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.Og2NavigationGraphBuilder">
+             <summary>
+             Builds the alpha OG2 navigation graph directly from the imported level geometry.
+            
+             This builder intentionally does not read or write the legacy BotNavigationAsset
+             format and never runs a full PlayerEntity simulation for every candidate link.
+             The resulting graph is compact enough to build once per SimpleLevel and share
+             between every bot in the match.
+             </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.Og2NavigationGraphStore">
+            <summary>
+            Shared runtime cache for the immutable alpha graph. A SimpleLevel is already
+            the lifetime boundary for a match area, so the weak-key cache avoids rebuilding
+            the same graph once per bot controller.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.Og2NavigationGraphStore.TryGetCached(OpenGarrison.Core.SimpleLevel,OpenGarrison.Core.BotBrain.NavGraph@)">
+            <summary>
+            Returns a graph that has already been resolved for this level by an
+            explicit warmup/build call without touching the persistent cache or
+            generating a graph.  Live bot thinking uses this seam after the server
+            or practice warmup has populated <see cref="F:OpenGarrison.Core.BotBrain.Og2NavigationGraphStore.Cache"/>.  In particular,
+            this also returns an extended-sweep graph whose effective key differs
+            from the original requested key.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.Og2NavigationGraphCache">
+             <summary>
+             Persistent cache for the runtime-generated OG2 alpha graph.
+            
+             The graph is immutable after construction, so a compact binary snapshot is
+             safe to reuse across diagnostic processes. The cache key includes the
+             generator fingerprint, map geometry fingerprint, contact-class selection,
+             and sweep settings. Steering/runtime changes therefore reuse the graph;
+             generator or map changes naturally miss the cache.
+             </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.Og2NavigationGraphPackaging">
+            <summary>Build-time conversion for runtimes that do not support BrotliStream.</summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.Og2NavigationGraphValidator">
+             <summary>
+             Structural acceptance checks for the OG2 contact graph.
+            
+             This validator deliberately does not simulate a bot. A passing report only
+             means that the graph is internally coherent and exposes a filtered route
+             for the requested movement contexts. Runtime execution remains a separate
+             acceptance gate.
+             </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.Og2RuntimeContactPlanner">
+            <summary>
+            Re-proves an OG2 contact from the live entry state before steering it.
+            Static graph contacts are discovered from a canonical grounded probe, but
+            route composition can hand the next edge residual velocity. This bounded
+            probe makes the edge recipe state-derived without adding map-specific rules.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.TopDownNavigationGraphBuilder">
+             <summary>
+             Builds the graph used by maps with the top-down movement model.
+            
+             Top-down maps do not have platformer surfaces, jumps, or fall transitions.
+             Their graph is therefore a conservative occupancy grid over the imported
+             walkmask/solid geometry. The graph is shared by every class and team and
+             uses ordinary Walk edges, which keeps runtime route execution identical to
+             the existing bot planner while allowing the movement model to handle both
+             axes directly.
+             </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.ObjectiveEvaluator">
+            <summary>
+            Evaluates the current game state and selects a macro-level goal position
+            for the bot to navigate toward, based on the active game mode.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.ObjectiveEvaluator.EvaluateGoal(OpenGarrison.Core.PlayerEntity,OpenGarrison.Core.SimulationWorld,OpenGarrison.Core.PlayerTeam,OpenGarrison.Core.PlayerEntity)">
+            <summary>
+            Determine the bot's current goal position based on game mode and state.
+            Returns a world (X, Y) position the bot should navigate toward.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.BotBrainPracticeBotController.TryGetBotBrainController(System.Byte,OpenGarrison.Core.BotBrain.BotBrainController@)">
+            <summary>
+            Test/diagnostic affordance: look up the per-slot brain controller. Intended for
+            xUnit harnesses and debug overlays that need to read trace strings and graph state.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.IBotReactionController">
+            <summary>
+            Interface for bot reaction/emote controllers that trigger chat bubble emotes
+            based on observed game events. Implementations can be used client-side (practice)
+            or server-side (online bots).
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.IBotReactionController.Reset">
+            <summary>
+            Resets all reaction state for a fresh session.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.IBotReactionController.UpdateReactions(OpenGarrison.Core.SimulationWorld,System.Collections.Generic.IReadOnlyDictionary{System.Byte,OpenGarrison.Core.BotBrain.ControlledBotSlot},System.Nullable{OpenGarrison.Core.BotBrain.BotObservedEvents})">
+            <summary>
+            Called once per simulation tick to update bot reaction states and trigger emotes.
+            </summary>
+            <param name="world">The simulation world.</param>
+            <param name="controlledBotSlots">The bot slots owned by this controller.</param>
+            <param name="observedEvents">Optional observed events from other participants.</param>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.BotObservedEvents">
+            <summary>
+            Observed events from other participants that bots may react to.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BotBrain.BotObservedEvents.LocalPlayerAcquiredWeapon">
+            <summary>
+            Whether the local/authoritative player picked up a weapon.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BotBrain.BotObservedEvents.LocalPlayerMultiKill">
+            <summary>
+            Whether the local/authoritative player achieved a multi-kill (3+).
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BotBrain.BotObservedEvents.LocalPlayerStartedRaging">
+            <summary>
+            Whether the local/authoritative player started raging.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BotBrain.BotObservedEvents.CaptureCelebration">
+            <summary>
+            Whether a cap celebration should trigger.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BotBrain.BotObservedEvents.ObservedDeaths">
+            <summary>
+            Positions and slots of observed bot deaths on the opposing team.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.BotObservedDeath">
+            <summary>
+            Represents an observed bot death for reaction purposes.
+            Uses raw float X/Y instead of Vector2 to avoid MonoGame dependency.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.BotReactionController">
+            <summary>
+            Bot reaction state machine for Last-to-Die style emote behavior.
+            This can be used client-side for practice bots or server-side for online bots.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.Reference.ModernGraphRouteCombatReference">
+            <summary>
+            Dormant reference copy of the useful combat decisions from the removed ModernGraphRoute practice bot.
+            This type is intentionally not used by runtime BotBrain code.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.LocalMotionController">
+            <summary>
+            Stateful guard around primitive local driving. It prevents per-tick target chasing
+            from degenerating into left/right/jump churn when the target is nearby but awkward.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.LocalMotionController.AbortActivePlan">
+            <summary>
+            Abandon only the currently committed local plan. Objective recovery
+            uses this when its caller has independently detected that the body has
+            made no progress; suppression/probe history remains intact for the
+            normal retry policy.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.PrimitiveDirectDrive">
+            <summary>
+            Small combat steering overlay for nearby visible enemies.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.SteeringMachine">
+            <summary>
+            Converts a NavPath into raw Left/Right/Up/Down steering intent.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.AimResolver">
+            <summary>
+            Computes aim position (AimWorldX, AimWorldY) for the bot.
+            When engaging an enemy, aims at center-mass. When traversing, aims in movement direction.
+            </summary>
+        </member>
+        <member name="F:OpenGarrison.Core.BotBrain.AimResolver.MaxAimJitter">
+            <summary>
+            Maximum random aim offset to prevent robotic snap-aiming.
+            </summary>
+        </member>
+        <member name="F:OpenGarrison.Core.BotBrain.AimResolver.TraversalAimAheadDistance">
+            <summary>
+            How far ahead to aim when traversing (no combat target).
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.CombatDecisionResolver.ApplySpyAwarenessDelay(OpenGarrison.Core.SimulationWorld,OpenGarrison.Core.PlayerEntity,System.Nullable{OpenGarrison.Core.BotBrain.BotBrainCombatTarget},OpenGarrison.Core.BotBrain.CombatDecisionMemory)">
+            <summary>
+            Applies the bot's reaction time to a newly visible Spy. The delay is a
+            single global 150-350 ms distribution, independent of difficulty. A
+            simulation RNG and the memory keep one sample per fresh acquisition.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BotBrain.TargetSelector">
+            <summary>
+            Selects the best enemy target for the bot to engage.
+            Picks nearest alive enemy on the opposing team.
+            </summary>
+        </member>
+        <member name="F:OpenGarrison.Core.BotBrain.TargetSelector.MaxEngagementRange">
+            <summary>
+            Maximum engagement distance. Beyond this, the bot won't try to fight.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BotBrain.TargetSelector.SelectTarget(OpenGarrison.Core.PlayerEntity,OpenGarrison.Core.SimulationWorld,OpenGarrison.Core.PlayerTeam)">
+            <summary>
+            Find the best target to engage, or null if no valid target exists.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.ClassicStockMapCatalog">
+            <summary>Explicit map identities keep original and redrawn geometry distinct over the network.</summary>
+        </member>
+        <member name="P:OpenGarrison.Core.DeadBodyEntity.GameplayClassId">
+            <summary>Gameplay class identity frozen at death; empty means legacy enum-only state.</summary>
+        </member>
+        <member name="T:OpenGarrison.Core.MedicUberDeliveryMode">
+            <summary>
+            The effect an active Medic charge delivers. This is separate from
+            <see cref="P:OpenGarrison.Core.PlayerEntity.IsUbered"/>, which represents any currently active
+            invulnerability source rather than the Medic's charge runtime.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.PlayerEntity.BlockedJumpRetrySuppressionTicksRemaining">
+            <summary>
+            Prevents a jump edge from being retried every tick after collision
+            resolution proves that the attempted jump never left the support
+            surface. This is intentionally short-lived and prediction-backed so a
+            player can immediately jump again after clearing the obstruction.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.PlayerEntity.AdvanceNavigationProbe(OpenGarrison.Core.PlayerInputSnapshot,System.Boolean,OpenGarrison.Core.SimpleLevel,OpenGarrison.Core.PlayerTeam,System.Double)">
+            <summary>
+            Advances only the movement/collision portion of a navigation probe.
+            Runtime OG2 contact validation does not need weapon, ability, aim, or
+            status-effect simulation; running those systems for every candidate
+            jump schedule can monopolize the live simulation thread.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.PlayerEntity.HydrateReplicatedEngineerAlternateWeaponMode">
+            <summary>
+            Hydrates the same LTD Engineer mode from the legacy snapshot state
+            stream. Legacy snapshots carry the generic medigun item, so this
+            explicit mode keeps weapon, beam, and HUD presentation coherent.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.PlayerEntity.TryResolveProtocol64Equipment(OpenGarrison.Protocol.Protocol64PlayerState,System.String,OpenGarrison.Core.PlayerEntity.Protocol64ResolvedEquipment@)">
+            <summary>
+            Resolves and validates the complete identity carried beside protocol-64
+            ammo. The registry intentionally repairs invalid loadout overrides, so
+            every transmitted identity is compared back to the resolved result
+            before any player state is mutated.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.PlayerEntity.ApplyProtocol64State(OpenGarrison.Protocol.Protocol64PlayerState,OpenGarrison.Core.CharacterClassDefinition,System.Int32)">
+            <summary>
+            Applies the deliberately small, self-contained player state carried by
+            protocol 64.  This is separate from the legacy snapshot hydrator: the
+            protocol-64 record does not claim to contain score, inventory, or
+            ability-runtime fields, so those fields must not be reset here.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.ArrowProjectileEntity.AppliesLastToDieGuardian">
+            <summary>
+            Spawn-time Last to Die payload. Keeping this on the projectile makes a
+            released arrow independent from later perk swaps and network hydration.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.ArrowProjectileEntity.TryGetOneWayPlatformBounds(System.Single@,System.Single@,System.Single@)">
+            <summary>
+            Gets the axis-aligned one-way support surface for a landed arrow.
+            Flying arrows deliberately have no platform bounds. Steeply embedded
+            arrows are also excluded because their footprint is not a usable
+            horizontal platform.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.JumpPadEntity.IsNeutral">
+            <summary>
+            Map-authored pads use owner id 0 and neutral team so the existing
+            snapshot shape remains wire-compatible with team-owned pads.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.SentryEntity.IsDispenser">
+            <summary>
+            Dispensers share the sentry's authoritative structure/damage pipeline, but
+            do not acquire targets or fire. Keeping the variant on the entity lets all
+            existing collision, explosion, destruction, and snapshot paths stay aligned.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.LastToDie.LastToDieDerivedModifiers">
+            <summary>
+            Pure, per-player aggregation of LTD perks. Runtime code consumes this value
+            instead of consulting the client-owned offline experimental settings.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.LastToDie.LastToDieDerivedModifiers.#ctor(System.Int32,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Single,System.Single,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,OpenGarrison.Core.LastToDie.LastToDieSniperProfile,OpenGarrison.Core.LastToDie.LastToDieSpyRevolverProfile,OpenGarrison.Core.LastToDie.LastToDieUniversalModifiers)">
+            <summary>
+            Pure, per-player aggregation of LTD perks. Runtime code consumes this value
+            instead of consulting the client-owned offline experimental settings.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.LastToDie.LastToDieDirector">
+            <summary>
+            Transport-agnostic authoritative Last to Die state machine. The server owns
+            the instance; clients consume immutable snapshots and submit validated commands.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.LastToDie.LastToDieLegacyPerkSettings">
+            <summary>
+            Translates the original offline Last to Die stock perks into the existing
+            gameplay settings model. The hosted runtime keeps this value per player;
+            it must not be written into the world's ordinary settings record.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.LastToDie.LastToDieMedicKritzM2Payload">
+            <summary>
+            Immutable Last to Die payload captured by a Kritzkrieg M2 projectile when
+            it is spawned. The base Kritz M2 bit distinguishes the healing needle from
+            a stock Medic primary needle and leaves room for later projectile perks.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.LastToDie.LastToDieMedicKritzM2Payload.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Immutable Last to Die payload captured by a Kritzkrieg M2 projectile when
+            it is spawned. The base Kritz M2 bit distinguishes the healing needle from
+            a stock Medic primary needle and leaves room for later projectile perks.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.LastToDie.LastToDieRandom">
+            <summary>
+            Version-stable PCG32 stream used for authoritative Last to Die decisions.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.LastToDie.LastToDieSniperProfile">
+            <summary>
+            Static, per-player Sniper weapon and movement rules for Last to Die.
+            Charge remains expressed in source ticks, with the effective maxima carried
+            by the profile so authority, prediction, and presentation use one scale.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.LastToDie.LastToDieSniperProfile.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Static, per-player Sniper weapon and movement rules for Last to Die.
+            Charge remains expressed in source ticks, with the effective maxima carried
+            by the profile so authority, prediction, and presentation use one scale.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.LastToDie.LastToDieSpyRevolverProfile">
+            <summary>
+            Immutable, per-trigger Spy revolver behavior for Last to Die. The profile is
+            copied onto each projectile so later build changes cannot mutate a shot in flight.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.LastToDie.LastToDieSpyRevolverProfile.#ctor(System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Immutable, per-trigger Spy revolver behavior for Last to Die. The profile is
+            copied onto each projectile so later build changes cannot mutate a shot in flight.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.LastToDie.LastToDieStatusEffectIds">
+            <summary>
+            Stable status channels used to keep unrelated perk effects independent.
+            Reapplying one channel from the same source refreshes that channel; effects
+            from different channels or sources remain independently attributed.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.LastToDie.LastToDieStatusEffectSpec">
+            <summary>
+            A normalized, tick-based status request. Damage and movement fields are
+            intentionally explicit so one field never changes meaning by effect kind.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.LastToDie.LastToDieStatusEffectSpec.#ctor(OpenGarrison.Core.LastToDie.LastToDieStatusEffectId,OpenGarrison.Core.LastToDie.LastToDieStatusEffectKind,System.Int32,System.Single,System.Single,System.Single,System.Single,System.Single,System.Int32,System.Single,System.Single)">
+            <summary>
+            A normalized, tick-based status request. Damage and movement fields are
+            intentionally explicit so one field never changes meaning by effect kind.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.LastToDie.LastToDieSurvivorRules">
+            <summary>Starting bonuses and health drops shared by offline and hosted runs.</summary>
+        </member>
+        <member name="T:OpenGarrison.Core.LastToDie.LastToDieUniversalModifiers">
+            <summary>
+            Shared runtime effects for all-class Last to Die perks. Keeping these
+            together makes the stacking rules explicit and avoids adding one-off
+            state to the offline gameplay settings model.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.LastToDieSniperArrowPayload">
+            <summary>
+            Release-time Huntsman payload shared by the first arrow and any queued
+            Menage A Trois arrows. It deliberately does not consult the owner's later
+            perk or critical-boost state.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.LastToDieSniperArrowPayload.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Single,System.Single,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Single)">
+            <summary>
+            Release-time Huntsman payload shared by the first arrow and any queued
+            Menage A Trois arrows. It deliberately does not consult the owner's later
+            perk or critical-boost state.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.HostedServerProcessIdentity">
+            <summary>
+            Identifies a process by both PID and creation time so a reused PID cannot
+            be mistaken for the process that owns a hosted server session.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.HostedServerProcessIdentity.#ctor(System.Int32,System.Int64)">
+            <summary>
+            Identifies a process by both PID and creation time so a reused PID cannot
+            be mistaken for the process that owns a hosted server session.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BarrierConfiguration.EnsureDefaultTargets(System.Collections.Generic.IReadOnlyDictionary{System.String,System.String})">
+            <summary>
+            Supply defaults only when no target settings were authored. Explicit Allow values are intentional.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BarrierLegacyPropertyMigration">
+            <summary>
+            Converts pre-granular barrier property bags into the modern per-target block/allow schema.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BarrierProjectileRaycast">
+            <summary>
+            Swept raycasts against barrier rectangles so fast projectiles do not tunnel through thin walls.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BarrierTargetFilters.SolidWall">
+            <summary>
+            Standard solid wall: blocks both teams and intel carriers; projectiles pass unless configured otherwise.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.DirectionalWallCollision.BlocksWrongWayTraversal(OpenGarrison.Core.DirectionalWallPassDirection,OpenGarrison.Core.RoomObjectMarker,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Blocks movement from the side opposite the pass direction (wrong-way entry).
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BuilderImageValidation">
+            <summary>Reject excessive or malformed assets before allocating decoded pixels.</summary>
+        </member>
+        <member name="T:OpenGarrison.Core.BuilderProjectStore">
+            <summary>A self-contained editing draft, including incomplete maps. Never a gameplay map.</summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BuilderProjectJsonContext.Boolean">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BuilderProjectJsonContext.ByteArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BuilderProjectJsonContext.Single">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BuilderProjectJsonContext.BuilderProjectEnvelope">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BuilderProjectJsonContext.CustomMapBuilderDocument">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BuilderProjectJsonContext.CustomMapBuilderEntity">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BuilderProjectJsonContext.CustomMapBuilderParallaxLayer">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BuilderProjectJsonContext.CustomMapBuilderResource">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BuilderProjectJsonContext.CustomMapBuilderResourceKind">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BuilderProjectJsonContext.IReadOnlyDictionaryStringCustomMapBuilderResource">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BuilderProjectJsonContext.IReadOnlyDictionaryStringString">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BuilderProjectJsonContext.IReadOnlyListCustomMapBuilderEntity">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BuilderProjectJsonContext.IReadOnlyListCustomMapBuilderParallaxLayer">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BuilderProjectJsonContext.Int32">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BuilderProjectJsonContext.String">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BuilderProjectJsonContext.Default">
+            <summary>
+            The default <see cref="T:System.Text.Json.Serialization.JsonSerializerContext"/> associated with a default <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.BuilderProjectJsonContext.GeneratedSerializerOptions">
+            <summary>
+            The source-generated options associated with this context.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.BuilderProjectJsonContext.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:OpenGarrison.Core.BuilderProjectJsonContext.#ctor(System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:OpenGarrison.Core.BuilderProjectJsonContext.GetTypeInfo(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="T:OpenGarrison.Core.BuilderReferenceProperties">
+            <summary>Reference properties shared by editing, cloning and validation.</summary>
+        </member>
+        <member name="T:OpenGarrison.Core.CustomMapBuilderEntityNormalization">
+            <summary>
+            Converts between legacy GG2 entity type names and simplified editor-facing types with property bags.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.CustomMapBuilderEntityNormalization.TryUpgradeLegacyToModern(OpenGarrison.Core.CustomMapBuilderEntity,OpenGarrison.Core.CustomMapBuilderEntity@)">
+            <summary>
+            Optional upgrade path: convert legacy entities to modern editor types (does not run automatically on open).
+            </summary>
+        </member>
+        <member name="F:OpenGarrison.Core.ControlPointMapSettingsMetadata.LegacyMetadataStripKeys">
+            <summary>Legacy map metadata keys copied from old maps but not used by OpenGarrison.</summary>
+        </member>
+        <member name="T:OpenGarrison.Core.CustomMapEntityPlacementAnchor">
+            <summary>
+            Maps exported entity coordinates to runtime room-object top-left positions.
+            Most entities use top-left anchors. Resizable logic zones in Garrison Builder store center coordinates.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.CustomMapEntityRuntimeRegistry">
+            <summary>
+            Extensible registry for map entity types used by the modern builder and runtime import.
+            Register additional <see cref="T:OpenGarrison.Core.ICustomMapEntityRuntimeImporter"/> implementations to add new entity kinds.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.CustomMapEntityImportContext.UseCenterOrigin">
+            <summary>
+            When true, entity X/Y are sprite-origin coordinates and room-object markers are shifted to top-left.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.CustomMapPackageExporter.ResolvePackageManifestPath(OpenGarrison.Core.CustomMapBuilderDocument,System.String)">
+            <summary>
+            Keeps an explicitly chosen manifest path exact. A chosen directory receives a map-named manifest.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.CustomMapRoomObjectFactory">
+            <summary>
+            Creates runtime <see cref="T:OpenGarrison.Core.RoomObjectMarker"/> instances from map entity type names.
+            Shared by legacy import and modern entity handlers.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.LegacyTeamSpawnRuntimeImport">
+            <summary>
+            Runtime import rules for legacy GG2 team spawn entity types (redspawn, bluespawn, redspawnN, bluespawnN).
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.MapPackageTransaction">
+            <summary>Publishes immutable assets before atomically replacing their manifest.</summary>
+        </member>
+        <member name="T:OpenGarrison.Core.PngMapData">
+            <summary>The common PNG metadata reader for the editor, runtime and exporter.</summary>
+        </member>
+        <member name="T:OpenGarrison.Core.MapLogicActivatorRuntimeState">
+            <summary>
+            Per-round activator edge memory used to resolve competing activators on the same target.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.MapLogicCpTriggerOwnerRequirement">
+            <summary>
+            Which control point ownership state must hold for a <see cref="F:OpenGarrison.Core.MapLogicNodeKind.CpTrigger"/> to output true.
+            </summary>
+        </member>
+        <member name="F:OpenGarrison.Core.MapLogicCpTriggerOwnerRequirement.Owned">
+            <summary>True when the point is owned by either team (not neutral).</summary>
+        </member>
+        <member name="T:OpenGarrison.Core.MapMovementModeMetadata">
+            <summary>
+            Map-level movement model selection. The default value intentionally remains
+            the OG2 side-scrolling platform movement model for backwards compatibility.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.ForwardSpawnMetadata.ResolveForwardSpawnControlPointIndex(OpenGarrison.Core.PlayerTeam,System.Int32,System.Int32)">
+            <summary>
+            Maps a forward-spawn slot (1 = closest to that team's attack direction) to a numbered control point.
+            Red uses slots in ascending CP order; blue uses descending CP order because points are numbered red-to-blue.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.ForwardSpawnPriorityMetadata">
+            <summary>
+            Forward spawn selection priority (1-4). Higher numbers are preferred when multiple forward spawns are active.
+            Independent from the linked control point index used for use-condition evaluation.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.ForwardSpawnPriorityMetadata.ResolveBuilderSpriteFrameOffset(System.Int32)">
+            <summary>
+            Maps priority to numbered <c>spawnS</c> sprite frame offset (1-4 per team).
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.JumpPadSpawnMarker">
+            <summary>
+            A map-authored neutral jump pad. These pads use the normal jump-pad
+            simulation and presentation, but have no owning player or team.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.JumpPadSpawnMarker.#ctor(System.Single,System.Single)">
+            <summary>
+            A map-authored neutral jump pad. These pads use the normal jump-pad
+            simulation and presentation, but have no owning player or team.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.SimulationWorld.ApplyExplosiveDamageToJumpPads(System.Single,System.Single,System.Single,System.Single,OpenGarrison.Core.PlayerTeam,System.Single)">
+            <summary>
+            Applies ordinary explosive splash to buildable jump pads. Pads use the
+            same radial falloff as other structures, with the established 1.5x
+            structure multiplier. Neutral map pads can be damaged by either team;
+            team-owned pads keep the existing friendly-fire rule.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.SimulationWorld.ClampProjectilePresentationPath(OpenGarrison.Core.PlayerTeam,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Presentation-only sweep through the same solids and team blockers as
+            authoritative projectile collision. It never damages or moves an entity.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.SimulationWorld.NextBotSpyAwarenessDelayTicks(System.Int32)">
+            <summary>
+            Samples the one global Spy awareness reaction distribution in whole
+            simulation ticks. Restricting the sample to tick durations that fit
+            the authored interval keeps the effective delay within 150-350 ms at
+            every supported simulation rate.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.SimulationWorld.ClientPredictionMode">
+            <summary>
+            When true, only the local player and projectiles are simulated.
+            Other network players, match logic, and structures are skipped.
+            Used for client-side prediction in multiplayer.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Core.SimulationWorld.LastToDiePlayerPerkRuntime.LegacySettings">
+            <summary>
+            The original offline Last to Die perks are represented by the
+            experimental gameplay settings model. This copy is per network
+            slot; <see cref="P:OpenGarrison.Core.SimulationWorld.ExperimentalGameplaySettings"/>
+            remains the world/practice fallback.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.SimulationWorld.TryGetLastToDieLegacyGameplaySettings(System.Byte,OpenGarrison.Core.ExperimentalGameplaySettings@)">
+            <summary>
+            Gets the authoritative legacy settings for a hosted Last to Die
+            participant. Practice/offline callers that have no Last to Die build
+            continue to use the world-level experimental settings.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.SimulationWorld.IsLastToDieGameplaySettingEnabled(System.Func{OpenGarrison.Core.ExperimentalGameplaySettings,System.Boolean})">
+            <summary>
+            Resolves settings that are intentionally run-global in the original
+            Last to Die rules (rage, drops, and the captured-point aura). Hosted
+            participants keep those defaults in their per-slot profiles, so these
+            gates must not depend on whichever world-level practice record happens
+            to be installed.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.SimulationWorld.TryApplyLastToDiePlayerPredictionProfile(System.Byte,System.Collections.Generic.IEnumerable{System.String},System.Int32,System.Boolean)">
+            <summary>
+            Applies only the deterministic client prediction/presentation portion
+            of an authoritative Last to Die build. Healing, evasion, and damage
+            rewards remain exclusively in the server-owned perk runtime.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.SimulationWorld.AdvanceAuthoritativeMapLogicRuntime">
+            <summary>
+            Keeps combinatorial logic and timers aligned with authoritative control point state
+            while connected (client prediction mode). Gameplay outcomes remain server-authoritative.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.SimulationWorld.TrySetNetworkPlayerInput(System.Byte,OpenGarrison.Core.PlayerInputSnapshot,OpenGarrison.Protocol.InputButtons,System.Boolean)">
+            <summary>
+            Sets a network input frame and optionally declares one-shot buttons as
+            explicit rising edges. Protocol-64 commands use this seam so two
+            adjacent jumps cannot be collapsed into one held-button transition.
+            With explicit presses, held state cannot create a second press when its
+            reliable command arrives on a different simulation tick.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.SimulationWorld.ReconcileRemoteLastToDieDemoknightPresentation(System.Collections.Generic.IReadOnlySet{System.Byte})">
+            <summary>
+            Applies the authoritative semantic Last to Die identity needed by remote
+            weapon presentation. Remote protocol players use server slots, while the
+            locally owned player is always simulation slot 1 and is reconciled by the
+            normal local prediction profile.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.SimulationWorld.ApplyProtocol64PlayerState(OpenGarrison.Protocol.Protocol64PlayerState,System.Nullable{System.Byte})">
+            <summary>
+            Applies the authoritative player slice from protocol 64 to the actual
+            gameplay world.  Identity/generation validation happens in the client
+            protocol applier; this method only resolves the already-validated class
+            and updates the slot's live entity.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.SimulationWorld.TryRegisterServerTerminatedProjectilePlayerHitEffect(System.Single,System.Single,System.Single,System.Single,OpenGarrison.Core.PlayerTeam,System.Int32,System.Int32)">
+            <summary>
+            When a client-predicted projectile is removed by the server snapshot before the local
+            simulation detected the hit, fire a blood effect at the nearest enemy player along the
+            projectile's backward trajectory. This recovers visual feedback (blood, plugin damage
+            sounds) that would otherwise be silently dropped due to latency-induced position
+            divergence between server and client.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.SimulationWorld.FilterTerminatedProjectiles``1(System.Collections.Generic.IReadOnlyList{``0},System.Func{``0,System.Int32})">
+            <summary>
+            Returns the input list with any entries whose ID is currently suppressed removed.
+            Baseline-preserved states for locally-terminated projectiles must not ghost-respawn
+            them while the server's EntityRemoval contribution is still in transit. Local
+            suppression expires quickly so authoritative server state can restore a projectile
+            when the client predicted the hit/removal incorrectly.
+            Allocates a new list only when at least one entry is filtered; otherwise returns
+            the original reference (zero allocation on the common path).
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.SimulationWorld.ResolveProjectileGravityScale">
+            <summary>
+            Ballistic gravity belongs to the platformer movement model. In a
+            top-down map projectile Y is the second map-plane axis, not height, so
+            applying gravity bends shots downward and can make them leave the map.
+            Keep the ordinary configured gravity for every other map type.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.SimulationWorld.SpawnClientBloodFromDamage(System.Single,System.Single,System.Int32)">
+            <summary>
+            Spawns blood client-side based on damage events from the server.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Core.SimulationWorld.IsNearPrimaryWeaponSwapStation(OpenGarrison.Core.PlayerEntity)">
+            <summary>
+            Primary-weapon swaps are intentionally restricted to healing cabinets and
+            allied dispensers. This is shared by authority and client prediction.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Core.DeterministicSimulationScope">
+            <summary>Uses work limits instead of machine-speed limits while recording or replaying a match.</summary>
+        </member>
+        <member name="T:OpenGarrison.Core.ClientSnapshotStringCache">
+            <summary>
+            Client-side string cache that resolves cache IDs to strings.
+            Receives cache updates from server snapshots.
+            </summary>
+        </member>
+    </members>
+</doc>

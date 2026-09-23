@@ -1,0 +1,15 @@
+{
+  "id": "ability.demoman-utility",
+  "kind": "Ability",
+  "displayName": "Demoman Utility",
+  "behaviorId": "builtin.utility.demoman",
+  "ability": {
+    "category": "utility",
+    "channel": "utility",
+    "activation": "pressed",
+    "executorId": "builtin.ability.demoman_detonate",
+    "tags": [ "detonate", "allowed_while_taunting", "experimental_ltd" ]
+  },
+  "ammo": {},
+  "presentation": {}
+}

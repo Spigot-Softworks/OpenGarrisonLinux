@@ -1,0 +1,15 @@
+{
+  "id": "ability.sniper-utility",
+  "kind": "Ability",
+  "displayName": "Sniper Utility",
+  "behaviorId": "builtin.utility.sniper",
+  "ability": {
+    "category": "utility",
+    "channel": "utility",
+    "activation": "pressed",
+    "executorId": "builtin.ability.sniper_binoculars",
+    "tags": [ "binoculars", "toggle" ]
+  },
+  "ammo": {},
+  "presentation": {}
+}

@@ -1,0 +1,53 @@
+{
+  "id": "weapon.tomislav",
+  "kind": "Weapon",
+  "weaponSlot": "Primary",
+  "grantedAbilityItemIds": [ "ability.heavy-sandvich" ],
+  "displayName": "Tomislav",
+  "behaviorId": "builtin.weapon.minigun",
+  "ammo": {
+    "maxAmmo": 200,
+    "ammoPerUse": 4,
+    "projectilesPerUse": 1,
+    "useDelaySourceTicks": 3,
+    "reloadSourceTicks": 0,
+    "spreadDegrees": 3.5,
+    "minProjectileSpeed": 12.0,
+    "additionalProjectileSpeed": 1.0,
+    "autoReloads": false,
+    "ammoRegenPerTick": 1,
+    "refillsAllAtOnce": false
+  },
+  "combat": {
+    "fireSoundName": "ChaingunSnd",
+    "directHitDamage": 7.0,
+    "playerKnockbackScale": 1.05,
+    "playerSlowMovementMultiplier": 0.97,
+    "playerSlowRefreshSourceTicks": 6,
+    "playerKnockback": {
+      "impulsePerUse": 1.25,
+      "airborneVerticalScale": 0.5,
+      "groundedVerticalScale": 0.5
+    }
+  },
+  "presentation": {
+    "worldSpriteName": "stock.gg2.weapon.tomislav.world",
+    "recoilSpriteName": "stock.gg2.weapon.tomislav.recoil",
+    "hudSpriteName": "MinigunAmmoS",
+    "weaponOffsetX": -11.0,
+    "weaponOffsetY": 0.0,
+    "recoilDurationSourceTicks": 3,
+    "reloadDurationSourceTicks": 0,
+    "loopRecoilWhileActive": true,
+    "blueTeamHudFrameOffset": 1
+  },
+  "description": {
+    "summary": "A minigun with tighter spread and a steadier firing pattern.",
+    "positiveAttributes": [
+      "Tighter spread than stock"
+    ],
+    "negativeAttributes": [
+      "Slightly slower firing speed"
+    ]
+  }
+}

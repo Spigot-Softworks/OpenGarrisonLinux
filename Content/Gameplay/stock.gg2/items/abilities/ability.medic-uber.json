@@ -1,0 +1,15 @@
+{
+  "id": "ability.medic-uber",
+  "kind": "Ability",
+  "displayName": "UberCharge",
+  "behaviorId": "builtin.ability.medic_uber",
+  "ability": {
+    "category": "weaponAltFire",
+    "channel": "special",
+    "activation": "held",
+    "executorId": "builtin.ability.medic_uber",
+    "tags": [ "core_m2", "uber", "charge" ]
+  },
+  "ammo": {},
+  "presentation": {}
+}

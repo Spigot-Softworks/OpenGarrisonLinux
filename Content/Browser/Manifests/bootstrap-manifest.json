@@ -1,0 +1,959 @@
+{
+  "Version": 1,
+  "Atlases": [
+    {
+      "Id": "bootstrap-hud-ui-0",
+      "ImagePath": "Content/Browser/Atlases/bootstrap-hud-ui-0-10261fd53d5826e941c0d16c1c4e6ac9395736a2f50a501134a96d7b80cd34c7.png",
+      "Width": 114,
+      "Height": 62,
+      "Group": "hud-ui"
+    },
+    {
+      "Id": "bootstrap-menu-ui-0",
+      "ImagePath": "Content/Browser/Atlases/bootstrap-menu-ui-0-4c861b10b65f65b1fabb04a9e359ffb0a69045485e199b55d5b012f4ebd68737.png",
+      "Width": 2004,
+      "Height": 2028,
+      "Group": "menu-ui"
+    },
+    {
+      "Id": "bootstrap-menu-ui-1",
+      "ImagePath": "Content/Browser/Atlases/bootstrap-menu-ui-1-6f72fd401bdbd66d17c8402e9f11a9e477f85c2881fcaf7d6f92a284d40f1e6a.png",
+      "Width": 1928,
+      "Height": 1298,
+      "Group": "menu-ui"
+    }
+  ],
+  "Sprites": {
+    "Content/Sprites/HUDs/Feedback/miss.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 34,
+      "FrameHeight": 34,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-hud-ui-0",
+          "X": 2,
+          "Y": 2,
+          "Width": 34,
+          "Height": 34,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "28AFBB6F5AE3D203291C7B0869A5D4210AD67E0289FC148EFB00F771C0BD4531"
+    },
+    "Content/Sprites/InGameElements/CustomBubble/big_bubble.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 72,
+      "FrameHeight": 58,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-hud-ui-0",
+          "X": 40,
+          "Y": 2,
+          "Width": 72,
+          "Height": 58,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "9009CD436EB4D95C54F0078536AA4FA5256045A0FCA2B9201265070604A20A48"
+    },
+    "Content/Sprites/Menu/Fonts/ConsoleFontAtlas.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 128,
+      "FrameHeight": 154,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 2,
+          "Y": 2,
+          "Width": 128,
+          "Height": 154,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "D734851DE7B5C10C38EACC0708CD423DB94FFDB667114461C289478DBFFDEA88"
+    },
+    "Content/Sprites/Menu/Fonts/MenuBuildFontAtlas.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 1504,
+      "FrameHeight": 22,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 134,
+          "Y": 2,
+          "Width": 1504,
+          "Height": 22,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "59ABA9997639BE88B75BC431D11ED414E6CD11BB2BEA1ABEB1ED133BB10D427C"
+    },
+    "Content/Sprites/Menu/Fonts/MenuFontAtlas.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 210,
+      "FrameHeight": 220,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 1642,
+          "Y": 2,
+          "Width": 210,
+          "Height": 220,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "BCBC09ED31AB51433D604A21E8BAEA596D42CD9CD6401D7C73DFA5763D10E0EC"
+    },
+    "Content/Sprites/Menu/LastToDie/CharacterSelect/arrowleft.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 63,
+      "FrameHeight": 78,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 1856,
+          "Y": 2,
+          "Width": 63,
+          "Height": 78,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "116ACA0178A282E097D3BC833C9B7733BDFA240270A3BD652EE8B16B1955573C"
+    },
+    "Content/Sprites/Menu/LastToDie/CharacterSelect/arrowright.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 63,
+      "FrameHeight": 78,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 1923,
+          "Y": 2,
+          "Width": 63,
+          "Height": 78,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "DC557D8552988E8E3ECD02F956EC83506A7FC2B70D71774BCB8D0BE1E29EDF05"
+    },
+    "Content/Sprites/Menu/LastToDie/CharacterSelect/democard.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 266,
+      "FrameHeight": 370,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 2,
+          "Y": 226,
+          "Width": 266,
+          "Height": 370,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "8B0A077BBC1FA59FBBD10CD340F503E851B51B7EFD9EDBF687AF49144E61C245"
+    },
+    "Content/Sprites/Menu/LastToDie/CharacterSelect/engicard.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 266,
+      "FrameHeight": 370,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 272,
+          "Y": 226,
+          "Width": 266,
+          "Height": 370,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "FBA858519CD254CB622FB04D5EB1A2DAAE405D646ACFD6FDC4CA2EB06582BD9F"
+    },
+    "Content/Sprites/Menu/LastToDie/CharacterSelect/mediccard.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 267,
+      "FrameHeight": 370,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 542,
+          "Y": 226,
+          "Width": 267,
+          "Height": 370,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "86E12411CDA3EB551B7F549CA14FB5B2949235C72BE54B7FB74AA76015893ED8"
+    },
+    "Content/Sprites/Menu/LastToDie/CharacterSelect/snipercard.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 267,
+      "FrameHeight": 370,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 813,
+          "Y": 226,
+          "Width": 267,
+          "Height": 370,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "200E6AD809AAEDD25C63B916475CDB50F2FD3263C1DFB547538D17A4EF09CCAC"
+    },
+    "Content/Sprites/Menu/LastToDie/CharacterSelect/soldiercard.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 267,
+      "FrameHeight": 370,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 1084,
+          "Y": 226,
+          "Width": 267,
+          "Height": 370,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "BC78F0373B27BE712723606E92327C1E61B8D816E17AF49B0EC569821E7691D8"
+    },
+    "Content/Sprites/Menu/LastToDie/CharacterSelect/spycard.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 266,
+      "FrameHeight": 370,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 1355,
+          "Y": 226,
+          "Width": 266,
+          "Height": 370,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "79B45B15CA32BC81A08BBCB0D4F93C1A7FE314780463B0BDAB87284A8F480191"
+    },
+    "Content/Sprites/Menu/LastToDie/logo.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 506,
+      "FrameHeight": 105,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 2,
+          "Y": 600,
+          "Width": 506,
+          "Height": 105,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "B016E9546C633EF18A93BCFB6946DE6B18F7514095080E10108CF6B2E7E9CBBC"
+    },
+    "Content/Sprites/Menu/LastToDie/ltd_buff.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 40,
+      "FrameHeight": 40,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 512,
+          "Y": 600,
+          "Width": 40,
+          "Height": 40,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "FBF57ED0DD0B7E4C5E9F974A05D1CD2A7436DE46F4B07976B75B81439301CC13"
+    },
+    "Content/Sprites/Menu/Plaques/LTD_MenuPlaque.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 376,
+      "FrameHeight": 359,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 556,
+          "Y": 600,
+          "Width": 376,
+          "Height": 359,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "08ED724EDDBEAD997622A2FC53123FBABCD9913D21D48D8243018029FDC9FD0E"
+    },
+    "Content/Sprites/Menu/Plaques/LTD_MenuTextBoxSolo.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 356,
+      "FrameHeight": 58,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 936,
+          "Y": 600,
+          "Width": 356,
+          "Height": 58,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "0FF6A6F36E5D924EDCE0737C2F85ED98BA0B5DB9A600A7EE4DA2AAC6909CFA7A"
+    },
+    "Content/Sprites/Menu/Plaques/MenuPlaque.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 376,
+      "FrameHeight": 359,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 1296,
+          "Y": 600,
+          "Width": 376,
+          "Height": 359,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "7760EC42D5FBE26D60D582B07D2C4FBD1BDF30C3C27CF392CFAF128E8D553132"
+    },
+    "Content/Sprites/Menu/Plaques/MenuPlaqueTall.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 376,
+      "FrameHeight": 587,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 2,
+          "Y": 963,
+          "Width": 376,
+          "Height": 587,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "36BADABB314095C8B6E60E1DA054CFC97B90FF6B3452FE1061D222D54A249F45"
+    },
+    "Content/Sprites/Menu/Plaques/MenuTextBoxBottom.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 356,
+      "FrameHeight": 58,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 382,
+          "Y": 963,
+          "Width": 356,
+          "Height": 58,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "8A450D65B4D2C003201D76D9B3AF60B06FBF42EBA34C13198DCD3A84577FB9C5"
+    },
+    "Content/Sprites/Menu/Plaques/MenuTextBoxMiddle.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 356,
+      "FrameHeight": 59,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 742,
+          "Y": 963,
+          "Width": 356,
+          "Height": 59,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "6D9B1C97D6F20C4A255BE6C62FFEF33870A0235F919FB638318AFEF32E9FD41A"
+    },
+    "Content/Sprites/Menu/Plaques/MenuTextBoxSolo.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 356,
+      "FrameHeight": 58,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 1102,
+          "Y": 963,
+          "Width": 356,
+          "Height": 58,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "5BB6F98B714BA829E41FF91264630CE696EDCBC3FAE6F7733E1811A98DCCD323"
+    },
+    "Content/Sprites/Menu/Plaques/MenuTextBoxTop.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 356,
+      "FrameHeight": 59,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 1462,
+          "Y": 963,
+          "Width": 356,
+          "Height": 59,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "13BF4B3C3095E631F39268CEA59F59F020CEC2F67E27720E2D58456B2FF3B5FE"
+    },
+    "Content/Sprites/Menu/PlayerCards/blueplayercard.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 276,
+      "FrameHeight": 116,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 2,
+          "Y": 1554,
+          "Width": 276,
+          "Height": 116,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "5DCD710DF13A59C300ACE63F2D144A91ABBA2E00F725139F6F09509A4E9650F2"
+    },
+    "Content/Sprites/Menu/PlayerCards/Medals/Bloodsoaked Batallion.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 32,
+      "FrameHeight": 64,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 282,
+          "Y": 1554,
+          "Width": 32,
+          "Height": 64,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "D6D32F611C3ECB02264F13FBBE2512582D8652E8A8EFC4F8961ED94DB8CFE149"
+    },
+    "Content/Sprites/Menu/PlayerCards/Medals/Keyboard Warrior.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 32,
+      "FrameHeight": 64,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 318,
+          "Y": 1554,
+          "Width": 32,
+          "Height": 64,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "A8296A21CA7D44742C604F18135F66A2BB174CC4FE2A19A646D74C8DDCB9464A"
+    },
+    "Content/Sprites/Menu/PlayerCards/Medals/Mercenary.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 32,
+      "FrameHeight": 64,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 354,
+          "Y": 1554,
+          "Width": 32,
+          "Height": 64,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "9AA254C0AB08396D016D33A2062B2564A6CA2B4FB02A80182687BA227C66ACBF"
+    },
+    "Content/Sprites/Menu/PlayerCards/Medals/Shining Hero.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 32,
+      "FrameHeight": 64,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 390,
+          "Y": 1554,
+          "Width": 32,
+          "Height": 64,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "E1107F83CAD7AF6D896E7ACA36133C2C509E03C0582AAE63BC49611E91251EB0"
+    },
+    "Content/Sprites/Menu/PlayerCards/Medals/The Legendary.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 32,
+      "FrameHeight": 64,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 426,
+          "Y": 1554,
+          "Width": 32,
+          "Height": 64,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "3D7C4FBB297DA15160484FD44804943FEC7940D9E64AA822F4EA63BF64EF3737"
+    },
+    "Content/Sprites/Menu/PlayerCards/Medals/Time-Tested Veteran.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 32,
+      "FrameHeight": 64,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 462,
+          "Y": 1554,
+          "Width": 32,
+          "Height": 64,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "9F1106C346B0BD0861DC2142670F4C5BACB1919F055B1CD64AC38DD9CFD67A1E"
+    },
+    "Content/Sprites/Menu/PlayerCards/redplayercard.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 276,
+      "FrameHeight": 116,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 498,
+          "Y": 1554,
+          "Width": 276,
+          "Height": 116,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "C939BC2EF61A1C61D7F2F13D1CB4DDA64FEB671857370D47405103D356F78019"
+    },
+    "Content/Sprites/Menu/RandomizerLoadout/BackS.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 128,
+      "FrameHeight": 32,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 778,
+          "Y": 1554,
+          "Width": 128,
+          "Height": 32,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "3C0960D9B7F5299D3ABC86ED9A491074D68CE577227D81E0878C6436662FED31"
+    },
+    "Content/Sprites/Menu/RandomizerLoadout/DescriptionBoardS.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 276,
+      "FrameHeight": 172,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 910,
+          "Y": 1554,
+          "Width": 276,
+          "Height": 172,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "26F9BA88518B5C6BA24755B5FD636ACB0196366D3A96DDD112BCC32ED7324598"
+    },
+    "Content/Sprites/Menu/RandomizerLoadout/LoadoutBackgroundBar.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 10,
+      "FrameHeight": 240,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 1190,
+          "Y": 1554,
+          "Width": 10,
+          "Height": 240,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "3D1BB6B8AF301F6C68244A11E8D74DFF46E8BD0C35F1DC2B13E53D6122829035"
+    },
+    "Content/Sprites/Menu/RandomizerLoadout/LoadoutSelectionStrip.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 381,
+      "FrameHeight": 50,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 1204,
+          "Y": 1554,
+          "Width": 381,
+          "Height": 50,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "937173870E5B66E630357925499B5C85F34125FE573F6892709312C8C3C223D1"
+    },
+    "Content/Sprites/Menu/RandomizerLoadout/LoadoutStrip.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 520,
+      "FrameHeight": 52,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 2,
+          "Y": 1798,
+          "Width": 520,
+          "Height": 52,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "1D1C354B26A6478DEF1F9B001E7194DCEC7B4505EC31E0D7C19B96C6912E55AE"
+    },
+    "Content/Sprites/Menu/RandomizerLoadout/PageS.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 60,
+      "FrameHeight": 32,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 526,
+          "Y": 1798,
+          "Width": 60,
+          "Height": 32,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "F2D45CEDC7EB4DBACB3DB481B6A54E81BC10AD2E8361211A812A8160851B63AE"
+    },
+    "Content/Sprites/Menu/RandomizerLoadout/ScrollerS.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 240,
+      "FrameHeight": 144,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 590,
+          "Y": 1798,
+          "Width": 240,
+          "Height": 144,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "AB9C038915CE296C2EAC4285819EA8CD9498DE16041AA04C45320450FE76AEF8"
+    },
+    "Content/Sprites/Menu/RandomizerLoadout/SelectionS.chunk0.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 2000,
+      "FrameHeight": 24,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 2,
+          "Y": 1946,
+          "Width": 2000,
+          "Height": 24,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "9CFBC552196BE12BEF5D16ECF67C60656B9F52B49306474E6D1A62C7D9BC7161"
+    },
+    "Content/Sprites/Menu/RandomizerLoadout/SelectionS.chunk1.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 2000,
+      "FrameHeight": 24,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 2,
+          "Y": 1974,
+          "Width": 2000,
+          "Height": 24,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "EB96315503E211EFE2C4ACF1C188775CCA28DDB99FC1DE83125A49C0FFC0967B"
+    },
+    "Content/Sprites/Menu/RandomizerLoadout/SelectionS.chunk2.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 2000,
+      "FrameHeight": 24,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-0",
+          "X": 2,
+          "Y": 2002,
+          "Width": 2000,
+          "Height": 24,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "915ADC4255219DC163F05E970ED2A4625C2057FA52D425EBACA2ADDA230C803B"
+    },
+    "Content/Sprites/Menu/RandomizerLoadout/SelectionS.chunk3.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 1200,
+      "FrameHeight": 24,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-1",
+          "X": 2,
+          "Y": 2,
+          "Width": 1200,
+          "Height": 24,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "35878657109A120115CC4AB05341D42DDD753B33F74970C01A693C79B7F362EA"
+    },
+    "Content/Sprites/Menu/RandomizerLoadout/SelectionS2.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 80,
+      "FrameHeight": 24,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-1",
+          "X": 1206,
+          "Y": 2,
+          "Width": 80,
+          "Height": 24,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "1FBA50774584F0F1D93662F287F2D6AF82FC2F4AEBD190E3A76A2CFB946810C9"
+    },
+    "Content/Sprites/Menu/Title/background-4x3.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 800,
+      "FrameHeight": 600,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-1",
+          "X": 2,
+          "Y": 30,
+          "Width": 800,
+          "Height": 600,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "7C51229888388930FE6D12F60EA248A6A43D605207246F1DE7960B752F452900"
+    },
+    "Content/Sprites/Menu/Title/background-5x4.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 780,
+      "FrameHeight": 624,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-1",
+          "X": 806,
+          "Y": 30,
+          "Width": 780,
+          "Height": 624,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "B45D39C30D34F359A6C8DA432189CE75849287A7790DD5FB63758DC9C660E557"
+    },
+    "Content/Sprites/Menu/Title/background.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 864,
+      "FrameHeight": 468,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-1",
+          "X": 2,
+          "Y": 658,
+          "Width": 864,
+          "Height": 468,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "F24EFE9D8ECB36B1DAD1EC9F72C7003B9149AD3FBE0041B081487738CF5C1FB9"
+    },
+    "Content/Sprites/Menu/Title/OpenGarrisonLogo/logo-flame-overlay.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 526,
+      "FrameHeight": 166,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-1",
+          "X": 870,
+          "Y": 658,
+          "Width": 526,
+          "Height": 166,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "083CB08CCC4EA6B4579811E66D686A99C6173FAECB479EA767557172B4EAD86F"
+    },
+    "Content/Sprites/Menu/Title/OpenGarrisonLogo/logo-flame-regions.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 526,
+      "FrameHeight": 166,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-1",
+          "X": 1400,
+          "Y": 658,
+          "Width": 526,
+          "Height": 166,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "BD5F189410E177FD9130136EBA04EBC5B2E28DE3B2B0B7071BEDBEFE69E7630A"
+    },
+    "Content/Sprites/Menu/Title/OpenGarrisonLogo/logo-static.png": {
+      "OriginX": 0,
+      "OriginY": 0,
+      "FrameWidth": 526,
+      "FrameHeight": 166,
+      "Frames": [
+        {
+          "AtlasId": "bootstrap-menu-ui-1",
+          "X": 2,
+          "Y": 1130,
+          "Width": 526,
+          "Height": 166,
+          "SourceImageIndex": 0,
+          "SourceFrameIndex": 0
+        }
+      ],
+      "Mask": null,
+      "SourceHash": "6A0611A30B1F48D1C7457848302314989E4634E77006CB4BF3D7759148B61EF4"
+    }
+  }
+}

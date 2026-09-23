@@ -1,0 +1,45 @@
+{
+  "id": "weapon.scout-nailgun",
+  "kind": "Weapon",
+  "weaponSlot": "Primary",
+  "displayName": "Nailgun",
+  "behaviorId": "builtin.weapon.scout_nailgun",
+  "ammo": {
+    "maxAmmo": 35,
+    "ammoPerUse": 1,
+    "projectilesPerUse": 1,
+    "useDelaySourceTicks": 5,
+    "reloadSourceTicks": 28,
+    "spreadDegrees": 4.0,
+    "minProjectileSpeed": 15.6,
+    "additionalProjectileSpeed": 4.68,
+    "autoReloads": true,
+    "ammoRegenPerTick": 0,
+    "refillsAllAtOnce": true
+  },
+  "combat": {},
+  "presentation": {
+    "worldSpriteName": "NailgunS",
+    "recoilSpriteName": "NailgunFS",
+    "reloadSpriteName": "NailgunFRS",
+    "hudSpriteName": "NailgunAmmoS",
+    "weaponOffsetX": -10.0,
+    "weaponOffsetY": -10.0,
+    "recoilDurationSourceTicks": 5,
+    "reloadDurationSourceTicks": 28,
+    "blueTeamHudFrameOffset": 1,
+    "hud": {
+      "displayKind": "ammoPanel",
+      "stackGroup": "weapon",
+      "order": 60,
+      "stateProvider": "secondaryAmmo",
+      "hideWhenUnavailable": true
+    }
+  },
+  "description": {
+    "summary": "Scout's nailgun. Fires nails rapidly.",
+    "positiveAttributes": [
+      "fires with Secondary Weapon"
+    ]
+  }
+}

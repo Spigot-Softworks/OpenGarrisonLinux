@@ -1,0 +1,1531 @@
+{
+  "sprites": {
+    "emptyMaskS": {
+      "metadataPath": "Content/Sprites/emptyMaskS.xml",
+      "framePaths": [],
+      "originX": 0,
+      "originY": 0,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "RECTANGLE",
+        "boundsMode": "AUTO",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "classicwellS": {
+      "metadataPath": "Content/Sprites/Collision Maps/classicwellS.xml",
+      "framePaths": [
+        "Content/Sprites/Collision Maps/classicwellS.images/image 0.png"
+      ],
+      "originX": 0,
+      "originY": 0,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "PRECISE",
+        "boundsMode": "FULL",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "ConflictS": {
+      "metadataPath": "Content/Sprites/Collision Maps/ConflictS.xml",
+      "framePaths": [
+        "Content/Sprites/Collision Maps/ConflictS.images/image 0.png"
+      ],
+      "originX": 0,
+      "originY": 0,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "PRECISE",
+        "boundsMode": "FULL",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "DestroyS": {
+      "metadataPath": "Content/Sprites/Collision Maps/DestroyS.xml",
+      "framePaths": [
+        "Content/Sprites/Collision Maps/DestroyS.images/image 0.png"
+      ],
+      "originX": 0,
+      "originY": 0,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "PRECISE",
+        "boundsMode": "AUTO",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "DirtbowlS": {
+      "metadataPath": "Content/Sprites/Collision Maps/DirtbowlS.xml",
+      "framePaths": [
+        "Content/Sprites/Collision Maps/DirtbowlS.images/image 0.png"
+      ],
+      "originX": 0,
+      "originY": 0,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "PRECISE",
+        "boundsMode": "FULL",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "EgyptS": {
+      "metadataPath": "Content/Sprites/Collision Maps/EgyptS.xml",
+      "framePaths": [
+        "Content/Sprites/Collision Maps/EgyptS.images/image 0.png"
+      ],
+      "originX": 0,
+      "originY": 0,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "PRECISE",
+        "boundsMode": "FULL",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "LumberyardS": {
+      "metadataPath": "Content/Sprites/Collision Maps/LumberyardS.xml",
+      "framePaths": [
+        "Content/Sprites/Collision Maps/LumberyardS.images/image 0.png"
+      ],
+      "originX": 0,
+      "originY": 0,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "PRECISE",
+        "boundsMode": "AUTO",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "MontaneS": {
+      "metadataPath": "Content/Sprites/Collision Maps/MontaneS.xml",
+      "framePaths": [
+        "Content/Sprites/Collision Maps/MontaneS.images/image 0.png"
+      ],
+      "originX": 0,
+      "originY": 0,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": true,
+        "shape": "PRECISE",
+        "boundsMode": "FULL",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "OrangeS": {
+      "metadataPath": "Content/Sprites/Collision Maps/OrangeS.xml",
+      "framePaths": [
+        "Content/Sprites/Collision Maps/OrangeS.images/image 0.png"
+      ],
+      "originX": 0,
+      "originY": 0,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "PRECISE",
+        "boundsMode": "FULL",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "TruefortS": {
+      "metadataPath": "Content/Sprites/Collision Maps/TruefortS.xml",
+      "framePaths": [
+        "Content/Sprites/Collision Maps/TruefortS.images/image 0.png"
+      ],
+      "originX": 0,
+      "originY": 0,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "PRECISE",
+        "boundsMode": "FULL",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "TwodFortTwoS": {
+      "metadataPath": "Content/Sprites/Collision Maps/TwodFortTwoS.xml",
+      "framePaths": [
+        "Content/Sprites/Collision Maps/TwodFortTwoS.images/image 0.png"
+      ],
+      "originX": 0,
+      "originY": 0,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "PRECISE",
+        "boundsMode": "FULL",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "WaterwayS": {
+      "metadataPath": "Content/Sprites/Collision Maps/WaterwayS.xml",
+      "framePaths": [
+        "Content/Sprites/Collision Maps/WaterwayS.images/image 0.png"
+      ],
+      "originX": 0,
+      "originY": 0,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "PRECISE",
+        "boundsMode": "FULL",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "gg2FontS": {
+      "metadataPath": "Content/Sprites/GameElements/gg2FontS.xml",
+      "framePaths": [
+        "Content/Sprites/GameElements/gg2FontS.images/image 0.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 1.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 2.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 3.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 4.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 5.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 6.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 7.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 8.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 9.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 10.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 11.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 12.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 13.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 14.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 15.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 16.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 17.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 18.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 19.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 20.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 21.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 22.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 23.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 24.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 25.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 26.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 27.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 28.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 29.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 30.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 31.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 32.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 33.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 34.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 35.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 36.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 37.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 38.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 39.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 40.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 41.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 42.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 43.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 44.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 45.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 46.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 47.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 48.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 49.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 50.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 51.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 52.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 53.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 54.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 55.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 56.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 57.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 58.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 59.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 60.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 61.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 62.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 63.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 64.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 65.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 66.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 67.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 68.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 69.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 70.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 71.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 72.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 73.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 74.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 75.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 76.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 77.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 78.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 79.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 80.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 81.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 82.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 83.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 84.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 85.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 86.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 87.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 88.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 89.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 90.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 91.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 92.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 93.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 94.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 95.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 96.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 97.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 98.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 99.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 100.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 101.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 102.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 103.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 104.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 105.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 106.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 107.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 108.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 109.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 110.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 111.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 112.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 113.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 114.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 115.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 116.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 117.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 118.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 119.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 120.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 121.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 122.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 123.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 124.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 125.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 126.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 127.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 128.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 129.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 130.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 131.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 132.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 133.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 134.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 135.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 136.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 137.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 138.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 139.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 140.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 141.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 142.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 143.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 144.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 145.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 146.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 147.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 148.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 149.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 150.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 151.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 152.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 153.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 154.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 155.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 156.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 157.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 158.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 159.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 160.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 161.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 162.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 163.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 164.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 165.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 166.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 167.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 168.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 169.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 170.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 171.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 172.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 173.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 174.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 175.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 176.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 177.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 178.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 179.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 180.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 181.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 182.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 183.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 184.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 185.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 186.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 187.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 188.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 189.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 190.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 191.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 192.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 193.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 194.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 195.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 196.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 197.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 198.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 199.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 200.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 201.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 202.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 203.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 204.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 205.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 206.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 207.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 208.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 209.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 210.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 211.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 212.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 213.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 214.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 215.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 216.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 217.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 218.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 219.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 220.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 221.png",
+        "Content/Sprites/GameElements/gg2FontS.images/image 222.png"
+      ],
+      "originX": 0,
+      "originY": 0,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "PRECISE",
+        "boundsMode": "AUTO",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "OpenGarrisonLogoS": {
+      "metadataPath": "Content/Sprites/GameElements/OpenGarrisonLogoS.xml",
+      "framePaths": [
+        "Content/Sprites/GameElements/OpenGarrisonLogoS.images/image 0.png"
+      ],
+      "originX": 0,
+      "originY": 0,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "RECTANGLE",
+        "boundsMode": "MANUAL",
+        "left": 0,
+        "top": 0,
+        "right": 168,
+        "bottom": 39
+      }
+    },
+    "BuildWheelS": {
+      "metadataPath": "Content/Sprites/HUD/BuildWheelS.xml",
+      "framePaths": [
+        "Content/Sprites/HUD/BuildWheelS.images/image 0.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 1.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 2.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 3.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 4.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 5.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 6.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 7.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 8.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 9.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 10.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 11.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 12.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 13.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 14.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 15.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 16.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 17.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 18.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 19.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 20.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 21.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 22.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 23.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 24.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 25.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 26.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 27.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 28.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 29.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 30.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 31.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 32.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 33.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 34.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 35.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 36.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 37.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 38.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 39.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 40.png",
+        "Content/Sprites/HUD/BuildWheelS.images/image 41.png"
+      ],
+      "originX": 0,
+      "originY": 0,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "PRECISE",
+        "boundsMode": "AUTO",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "JumpPadBlue": {
+      "metadataPath": "Content/Sprites/InGameElements/JumpPadBlue.xml",
+      "framePaths": [
+        "Content/Sprites/InGameElements/JumpPadBlue.images/00_blue_jumpsporter_idle_windy.png",
+        "Content/Sprites/InGameElements/JumpPadBlue.images/01_blue_jumpsporter_idle_windy.png",
+        "Content/Sprites/InGameElements/JumpPadBlue.images/02_blue_jumpsporter_idle_windy.png"
+      ],
+      "originX": 22,
+      "originY": 39,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "RECTANGLE",
+        "boundsMode": "AUTO",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "JumpPadBlueBuild": {
+      "metadataPath": "Content/Sprites/InGameElements/JumpPadBlueBuild.xml",
+      "framePaths": [
+        "Content/Sprites/InGameElements/JumpPadBlueBuild.images/image 0.png",
+        "Content/Sprites/InGameElements/JumpPadBlueBuild.images/image 1.png",
+        "Content/Sprites/InGameElements/JumpPadBlueBuild.images/image 2.png",
+        "Content/Sprites/InGameElements/JumpPadBlueBuild.images/image 3.png",
+        "Content/Sprites/InGameElements/JumpPadBlueBuild.images/image 4.png",
+        "Content/Sprites/InGameElements/JumpPadBlueBuild.images/image 5.png",
+        "Content/Sprites/InGameElements/JumpPadBlueBuild.images/image 6.png",
+        "Content/Sprites/InGameElements/JumpPadBlueBuild.images/image 7.png",
+        "Content/Sprites/InGameElements/JumpPadBlueBuild.images/image 8.png",
+        "Content/Sprites/InGameElements/JumpPadBlueBuild.images/image 9.png",
+        "Content/Sprites/InGameElements/JumpPadBlueBuild.images/image 10.png",
+        "Content/Sprites/InGameElements/JumpPadBlueBuild.images/image 11.png",
+        "Content/Sprites/InGameElements/JumpPadBlueBuild.images/image 12.png",
+        "Content/Sprites/InGameElements/JumpPadBlueBuild.images/image 13.png"
+      ],
+      "originX": 22,
+      "originY": 39,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "RECTANGLE",
+        "boundsMode": "AUTO",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "JumpPadGibsS": {
+      "metadataPath": "Content/Sprites/InGameElements/JumpPadGibsS.xml",
+      "framePaths": [
+        "Content/Sprites/InGameElements/JumpPadGibsS.images/image 0.png",
+        "Content/Sprites/InGameElements/JumpPadGibsS.images/image 1.png"
+      ],
+      "originX": 20,
+      "originY": 29,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "RECTANGLE",
+        "boundsMode": "AUTO",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "JumpPadRed": {
+      "metadataPath": "Content/Sprites/InGameElements/JumpPadRed.xml",
+      "framePaths": [
+        "Content/Sprites/InGameElements/JumpPadRed.images/00_red_jumpsporter_idle_windy.png",
+        "Content/Sprites/InGameElements/JumpPadRed.images/01_red_jumpsporter_idle_windy.png",
+        "Content/Sprites/InGameElements/JumpPadRed.images/02_red_jumpsporter_idle_windy.png"
+      ],
+      "originX": 22,
+      "originY": 39,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "RECTANGLE",
+        "boundsMode": "AUTO",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "JumpPadRedBuild": {
+      "metadataPath": "Content/Sprites/InGameElements/JumpPadRedBuild.xml",
+      "framePaths": [
+        "Content/Sprites/InGameElements/JumpPadRedBuild.images/image 0.png",
+        "Content/Sprites/InGameElements/JumpPadRedBuild.images/image 1.png",
+        "Content/Sprites/InGameElements/JumpPadRedBuild.images/image 2.png",
+        "Content/Sprites/InGameElements/JumpPadRedBuild.images/image 3.png",
+        "Content/Sprites/InGameElements/JumpPadRedBuild.images/image 4.png",
+        "Content/Sprites/InGameElements/JumpPadRedBuild.images/image 5.png",
+        "Content/Sprites/InGameElements/JumpPadRedBuild.images/image 6.png",
+        "Content/Sprites/InGameElements/JumpPadRedBuild.images/image 7.png",
+        "Content/Sprites/InGameElements/JumpPadRedBuild.images/image 8.png",
+        "Content/Sprites/InGameElements/JumpPadRedBuild.images/image 9.png",
+        "Content/Sprites/InGameElements/JumpPadRedBuild.images/image 10.png",
+        "Content/Sprites/InGameElements/JumpPadRedBuild.images/image 11.png",
+        "Content/Sprites/InGameElements/JumpPadRedBuild.images/image 12.png",
+        "Content/Sprites/InGameElements/JumpPadRedBuild.images/image 13.png"
+      ],
+      "originX": 22,
+      "originY": 39,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "RECTANGLE",
+        "boundsMode": "AUTO",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "BlueGrenadeS": {
+      "metadataPath": "Content/Sprites/Projectiles/BlueGrenadeS.xml",
+      "framePaths": [
+        "Content/Sprites/Projectiles/BlueGrenadeS.images/nade_blu.png"
+      ],
+      "originX": 3,
+      "originY": 3,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "RECTANGLE",
+        "boundsMode": "FULL",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "RedGrenadeS": {
+      "metadataPath": "Content/Sprites/Projectiles/RedGrenadeS.xml",
+      "framePaths": [
+        "Content/Sprites/Projectiles/RedGrenadeS.images/nade_red.png"
+      ],
+      "originX": 3,
+      "originY": 3,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "RECTANGLE",
+        "boundsMode": "FULL",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "OffsetS": {
+      "metadataPath": "Content/Sprites/Updater/OffsetS.xml",
+      "framePaths": [
+        "Content/Sprites/Updater/OffsetS.images/image 0.png"
+      ],
+      "originX": 16,
+      "originY": 16,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "RECTANGLE",
+        "boundsMode": "AUTO",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "UpdaterBackgroundS": {
+      "metadataPath": "Content/Sprites/Updater/UpdaterBackgroundS.xml",
+      "framePaths": [
+        "Content/Sprites/Updater/UpdaterBackgroundS.images/image 0.png"
+      ],
+      "originX": 0,
+      "originY": 0,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "RECTANGLE",
+        "boundsMode": "AUTO",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "UpdaterProgressS": {
+      "metadataPath": "Content/Sprites/Updater/UpdaterProgressS.xml",
+      "framePaths": [
+        "Content/Sprites/Updater/UpdaterProgressS.images/image 0.png"
+      ],
+      "originX": 4,
+      "originY": 8,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "RECTANGLE",
+        "boundsMode": "AUTO",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "PlayerHealthBlu": {
+      "metadataPath": "Content/Sprites/HUDs/DynamicHealthHud/PlayerHealthBlu.xml",
+      "framePaths": [
+        "Content/Sprites/HUDs/DynamicHealthHud/PlayerHealthBlu.images/image 0.png"
+      ],
+      "originX": 0,
+      "originY": 0,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "RECTANGLE",
+        "boundsMode": "AUTO",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "PlayerHealthCross": {
+      "metadataPath": "Content/Sprites/HUDs/DynamicHealthHud/PlayerHealthCross.xml",
+      "framePaths": [
+        "Content/Sprites/HUDs/DynamicHealthHud/PlayerHealthCross.images/image 0.png"
+      ],
+      "originX": 0,
+      "originY": 0,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "RECTANGLE",
+        "boundsMode": "AUTO",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "PlayerHealthCrossInternalMedicine": {
+      "metadataPath": "Content/Sprites/HUDs/DynamicHealthHud/PlayerHealthCrossInternalMedicine.xml",
+      "framePaths": [
+        "Content/Sprites/HUDs/DynamicHealthHud/PlayerHealthCrossInternalMedicine.images/image 0.png"
+      ],
+      "originX": 0,
+      "originY": 0,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "RECTANGLE",
+        "boundsMode": "AUTO",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "PlayerHealthRed": {
+      "metadataPath": "Content/Sprites/HUDs/DynamicHealthHud/PlayerHealthRed.xml",
+      "framePaths": [
+        "Content/Sprites/HUDs/DynamicHealthHud/PlayerHealthRed.images/image 0.png"
+      ],
+      "originX": 0,
+      "originY": 0,
+      "preload": true,
+      "transparent": false,
+      "mask": {
+        "separate": false,
+        "shape": "RECTANGLE",
+        "boundsMode": "AUTO",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "VoteNoS": {
+      "metadataPath": "Content/Sprites/HUDs/Voting/VoteNoS.xml",
+      "framePaths": [
+        "Content/Sprites/HUDs/Voting/VoteNoS.images/image 0.png"
+      ],
+      "originX": 8,
+      "originY": 8,
+      "preload": true,
+      "transparent": true,
+      "mask": {
+        "separate": false,
+        "shape": "RECTANGLE",
+        "boundsMode": "AUTO",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    },
+    "VoteYesS": {
+      "metadataPath": "Content/Sprites/HUDs/Voting/VoteYesS.xml",
+      "framePaths": [
+        "Content/Sprites/HUDs/Voting/VoteYesS.images/image 0.png"
+      ],
+      "originX": 8,
+      "originY": 8,
+      "preload": true,
+      "transparent": true,
+      "mask": {
+        "separate": false,
+        "shape": "RECTANGLE",
+        "boundsMode": "AUTO",
+        "left": null,
+        "top": null,
+        "right": null,
+        "bottom": null
+      }
+    }
+  },
+  "backgrounds": {
+    "background0": {
+      "metadataPath": "Content/Backgrounds/background0.xml",
+      "imagePath": "Content/Backgrounds/background0.png",
+      "preload": false,
+      "transparent": false
+    },
+    "ConflictB": {
+      "metadataPath": "Content/Backgrounds/ConflictB.xml",
+      "imagePath": "Content/Backgrounds/ConflictB.png",
+      "preload": false,
+      "transparent": false
+    },
+    "CustomMapB": {
+      "metadataPath": "Content/Backgrounds/CustomMapB.xml",
+      "imagePath": "Content/Backgrounds/CustomMapB.png",
+      "preload": false,
+      "transparent": false
+    },
+    "DestroyS": {
+      "metadataPath": "Content/Backgrounds/DestroyS.xml",
+      "imagePath": "Content/Backgrounds/DestroyS.png",
+      "preload": false,
+      "transparent": false
+    },
+    "DirtbowlB": {
+      "metadataPath": "Content/Backgrounds/DirtbowlB.xml",
+      "imagePath": "Content/Backgrounds/DirtbowlB.png",
+      "preload": false,
+      "transparent": false
+    },
+    "EgyptB": {
+      "metadataPath": "Content/Backgrounds/EgyptB.xml",
+      "imagePath": "Content/Backgrounds/EgyptB.png",
+      "preload": false,
+      "transparent": false
+    },
+    "LumberyardB": {
+      "metadataPath": "Content/Backgrounds/LumberyardB.xml",
+      "imagePath": "Content/Backgrounds/LumberyardB.png",
+      "preload": false,
+      "transparent": false
+    },
+    "MenuBackgroundB": {
+      "metadataPath": "Content/Backgrounds/MenuBackgroundB.xml",
+      "imagePath": "Content/Backgrounds/MenuBackgroundB.png",
+      "preload": false,
+      "transparent": false
+    },
+    "MontaneB": {
+      "metadataPath": "Content/Backgrounds/MontaneB.xml",
+      "imagePath": "Content/Backgrounds/MontaneB.png",
+      "preload": false,
+      "transparent": false
+    },
+    "OrangeB": {
+      "metadataPath": "Content/Backgrounds/OrangeB.xml",
+      "imagePath": "Content/Backgrounds/OrangeB.png",
+      "preload": false,
+      "transparent": false
+    },
+    "popupBackgroundB": {
+      "metadataPath": "Content/Backgrounds/popupBackgroundB.xml",
+      "imagePath": "Content/Backgrounds/popupBackgroundB.png",
+      "preload": false,
+      "transparent": false
+    },
+    "SplashScreenB": {
+      "metadataPath": "Content/Backgrounds/SplashScreenB.xml",
+      "imagePath": "Content/Backgrounds/SplashScreenB.png",
+      "preload": false,
+      "transparent": false
+    },
+    "TruefortB": {
+      "metadataPath": "Content/Backgrounds/TruefortB.xml",
+      "imagePath": "Content/Backgrounds/TruefortB.png",
+      "preload": false,
+      "transparent": false
+    },
+    "TwodFortTwoB": {
+      "metadataPath": "Content/Backgrounds/TwodFortTwoB.xml",
+      "imagePath": "Content/Backgrounds/TwodFortTwoB.png",
+      "preload": false,
+      "transparent": false
+    },
+    "twodfort_oldB": {
+      "metadataPath": "Content/Backgrounds/twodfort_oldB.xml",
+      "imagePath": "Content/Backgrounds/twodfort_oldB.png",
+      "preload": false,
+      "transparent": false
+    },
+    "WaterwayB": {
+      "metadataPath": "Content/Backgrounds/WaterwayB.xml",
+      "imagePath": "Content/Backgrounds/WaterwayB.png",
+      "preload": false,
+      "transparent": false
+    },
+    "zclassicwellB": {
+      "metadataPath": "Content/Backgrounds/zclassicwellB.xml",
+      "imagePath": "Content/Backgrounds/zclassicwellB.png",
+      "preload": false,
+      "transparent": false
+    }
+  },
+  "sounds": {
+    "BladeSnd": {
+      "metadataPath": "Content/Sounds/BladeSnd.xml",
+      "audioPath": "Content/Sounds/BladeSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": -0.04,
+      "volume": 1,
+      "preload": true
+    },
+    "BowSnd": {
+      "metadataPath": "Content/Sounds/BowSnd.xml",
+      "audioPath": "Content/Sounds/BowSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "BuffbannerSnd": {
+      "metadataPath": "Content/Sounds/BuffbannerSnd.xml",
+      "audioPath": "Content/Sounds/BuffbannerSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "CbntHealSnd": {
+      "metadataPath": "Content/Sounds/CbntHealSnd.xml",
+      "audioPath": "Content/Sounds/CbntHealSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "ChaingunSnd": {
+      "metadataPath": "Content/Sounds/ChaingunSnd.xml",
+      "audioPath": "Content/Sounds/ChaingunSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "ChargeSnd": {
+      "metadataPath": "Content/Sounds/ChargeSnd.xml",
+      "audioPath": "Content/Sounds/ChargeSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "CompressionBlastSnd": {
+      "metadataPath": "Content/Sounds/CompressionBlastSnd.xml",
+      "audioPath": "Content/Sounds/CompressionBlastSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 0.89,
+      "preload": true
+    },
+    "CountDown1Snd": {
+      "metadataPath": "Content/Sounds/CountDown1Snd.xml",
+      "audioPath": "Content/Sounds/CountDown1Snd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "CountDown2Snd": {
+      "metadataPath": "Content/Sounds/CountDown2Snd.xml",
+      "audioPath": "Content/Sounds/CountDown2Snd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "CPBeginCapSnd": {
+      "metadataPath": "Content/Sounds/CPBeginCapSnd.xml",
+      "audioPath": "Content/Sounds/CPBeginCapSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "CPCapturedSnd": {
+      "metadataPath": "Content/Sounds/CPCapturedSnd.xml",
+      "audioPath": "Content/Sounds/CPCapturedSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "CPDefendedSnd": {
+      "metadataPath": "Content/Sounds/CPDefendedSnd.xml",
+      "audioPath": "Content/Sounds/CPDefendedSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "DeathCamSnd": {
+      "metadataPath": "Content/Sounds/DeathCamSnd.xml",
+      "audioPath": "Content/Sounds/DeathCamSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "DeathSnd1": {
+      "metadataPath": "Content/Sounds/DeathSnd1.xml",
+      "audioPath": "Content/Sounds/DeathSnd1.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "DeathSnd2": {
+      "metadataPath": "Content/Sounds/DeathSnd2.xml",
+      "audioPath": "Content/Sounds/DeathSnd2.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "DirecthitSnd": {
+      "metadataPath": "Content/Sounds/DirecthitSnd.xml",
+      "audioPath": "Content/Sounds/DirecthitSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "DominationSnd": {
+      "metadataPath": "Content/Sounds/DominationSnd.xml",
+      "audioPath": "Content/Sounds/DominationSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "ExplosionSnd": {
+      "metadataPath": "Content/Sounds/ExplosionSnd.xml",
+      "audioPath": "Content/Sounds/ExplosionSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "EyelanderSnd": {
+      "metadataPath": "Content/Sounds/EyelanderSnd.xml",
+      "audioPath": "Content/Sounds/EyelanderSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": -0.04,
+      "volume": 1,
+      "preload": true
+    },
+    "FailureSnd": {
+      "metadataPath": "Content/Sounds/FailureSnd.xml",
+      "audioPath": "Content/Sounds/FailureSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "FlamethrowerSnd": {
+      "metadataPath": "Content/Sounds/FlamethrowerSnd.xml",
+      "audioPath": "Content/Sounds/FlamethrowerSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "FlaregunSnd": {
+      "metadataPath": "Content/Sounds/FlaregunSnd.xml",
+      "audioPath": "Content/Sounds/FlaregunSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "Gibbing": {
+      "metadataPath": "Content/Sounds/Gibbing.xml",
+      "audioPath": "Content/Sounds/Gibbing.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 0.55,
+      "preload": true
+    },
+    "ImpactSnd": {
+      "metadataPath": "Content/Sounds/ImpactSnd.xml",
+      "audioPath": "Content/Sounds/ImpactSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 0.65,
+      "preload": true
+    },
+    "IntelDropSnd": {
+      "metadataPath": "Content/Sounds/IntelDropSnd.xml",
+      "audioPath": "Content/Sounds/IntelDropSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 0.93,
+      "preload": true
+    },
+    "IntelGetSnd": {
+      "metadataPath": "Content/Sounds/IntelGetSnd.xml",
+      "audioPath": "Content/Sounds/IntelGetSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "IntelPutSnd": {
+      "metadataPath": "Content/Sounds/IntelPutSnd.xml",
+      "audioPath": "Content/Sounds/IntelPutSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "JumpPadSnd": {
+      "metadataPath": "Content/Sounds/JumpPadSnd.xml",
+      "audioPath": "Content/Sounds/JumpPadSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "JumpSnd": {
+      "metadataPath": "Content/Sounds/JumpSnd.xml",
+      "audioPath": "Content/Sounds/JumpSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "KnifeSnd": {
+      "metadataPath": "Content/Sounds/KnifeSnd.xml",
+      "audioPath": "Content/Sounds/KnifeSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "MedichaingunSnd": {
+      "metadataPath": "Content/Sounds/MedichaingunSnd.xml",
+      "audioPath": "Content/Sounds/MedichaingunSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "MedigunSnd": {
+      "metadataPath": "Content/Sounds/MedigunSnd.xml",
+      "audioPath": "Content/Sounds/MedigunSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "MessageSnd": {
+      "metadataPath": "Content/Sounds/MessageSnd.xml",
+      "audioPath": "Content/Sounds/message.ogg",
+      "fileType": ".ogg",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "MinegunSnd": {
+      "metadataPath": "Content/Sounds/MinegunSnd.xml",
+      "audioPath": "Content/Sounds/MinegunSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "NoticeSnd": {
+      "metadataPath": "Content/Sounds/NoticeSnd.xml",
+      "audioPath": "Content/Sounds/NoticeSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "PickupSnd": {
+      "metadataPath": "Content/Sounds/PickupSnd.xml",
+      "audioPath": "Content/Sounds/PickupSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "PistolSnd": {
+      "metadataPath": "Content/Sounds/PistolSnd.xml",
+      "audioPath": "Content/Sounds/PistolSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "rechargeSnd": {
+      "metadataPath": "Content/Sounds/rechargeSnd.xml",
+      "audioPath": "Content/Sounds/rechargeSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "RespawnSnd": {
+      "metadataPath": "Content/Sounds/RespawnSnd.xml",
+      "audioPath": "Content/Sounds/RespawnSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "RevengeSnd": {
+      "metadataPath": "Content/Sounds/RevengeSnd.xml",
+      "audioPath": "Content/Sounds/RevengeSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "RevolverSnd": {
+      "metadataPath": "Content/Sounds/RevolverSnd.xml",
+      "audioPath": "Content/Sounds/RevolverSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "RocketSnd": {
+      "metadataPath": "Content/Sounds/RocketSnd.xml",
+      "audioPath": "Content/Sounds/RocketSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "SentryAlert": {
+      "metadataPath": "Content/Sounds/SentryAlert.xml",
+      "audioPath": "Content/Sounds/SentryAlert.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "SentryBuildSnd": {
+      "metadataPath": "Content/Sounds/SentryBuildSnd.xml",
+      "audioPath": "Content/Sounds/SentryBuildSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "SentryFloorSnd": {
+      "metadataPath": "Content/Sounds/SentryFloorSnd.xml",
+      "audioPath": "Content/Sounds/SentryFloorSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "SentryIdle": {
+      "metadataPath": "Content/Sounds/SentryIdle.xml",
+      "audioPath": "Content/Sounds/sentryidle.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "ShotgunSnd": {
+      "metadataPath": "Content/Sounds/ShotgunSnd.xml",
+      "audioPath": "Content/Sounds/ShotgunSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "SirenSnd": {
+      "metadataPath": "Content/Sounds/SirenSnd.xml",
+      "audioPath": "Content/Sounds/SirenSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "SniperSnd": {
+      "metadataPath": "Content/Sounds/SniperSnd.xml",
+      "audioPath": "Content/Sounds/SniperSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "Splat": {
+      "metadataPath": "Content/Sounds/Splat.xml",
+      "audioPath": "Content/Sounds/Splat.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 0.5,
+      "preload": true
+    },
+    "UberChargedSnd": {
+      "metadataPath": "Content/Sounds/UberChargedSnd.xml",
+      "audioPath": "Content/Sounds/UberChargedSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "UberEndSnd": {
+      "metadataPath": "Content/Sounds/UberEndSnd.xml",
+      "audioPath": "Content/Sounds/UberEndSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "UberIdleSnd": {
+      "metadataPath": "Content/Sounds/UberIdleSnd.xml",
+      "audioPath": "Content/Sounds/UberIdleSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "UberStartSnd": {
+      "metadataPath": "Content/Sounds/UberStartSnd.xml",
+      "audioPath": "Content/Sounds/UberStartSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "VictorySnd": {
+      "metadataPath": "Content/Sounds/VictorySnd.xml",
+      "audioPath": "Content/Sounds/VictorySnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 1,
+      "preload": true
+    },
+    "VoteEngageSnd": {
+      "metadataPath": "Content/Sounds/VoteEngageSnd.xml",
+      "audioPath": "Content/Sounds/VoteEngageSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 0.8,
+      "preload": true
+    },
+    "VoteFailSnd": {
+      "metadataPath": "Content/Sounds/VoteFailSnd.xml",
+      "audioPath": "Content/Sounds/VoteFailSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 0.8,
+      "preload": true
+    },
+    "VoteNoSnd": {
+      "metadataPath": "Content/Sounds/VoteNoSnd.xml",
+      "audioPath": "Content/Sounds/VoteNoSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 0.8,
+      "preload": true
+    },
+    "VoteSuccessSnd": {
+      "metadataPath": "Content/Sounds/VoteSuccessSnd.xml",
+      "audioPath": "Content/Sounds/VoteSuccessSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 0.8,
+      "preload": true
+    },
+    "VoteYesSnd": {
+      "metadataPath": "Content/Sounds/VoteYesSnd.xml",
+      "audioPath": "Content/Sounds/VoteYesSnd.wav",
+      "fileType": ".wav",
+      "kind": "NORMAL",
+      "pan": 0,
+      "volume": 0.8,
+      "preload": true
+    }
+  }
+}

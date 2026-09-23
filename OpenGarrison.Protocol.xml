@@ -1,0 +1,304 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OpenGarrison.Protocol</name>
+    </assembly>
+    <members>
+        <member name="T:OpenGarrison.Protocol.AudioWireFormat">
+            <summary>Fixed Opus stream format. Each packet repeats the last three 20 ms frames.</summary>
+        </member>
+        <member name="T:OpenGarrison.Protocol.SnapshotSentryUpdateState">
+            <summary>
+            Lightweight sentry update for delta compression. Contains only frequently-changing fields.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Protocol.SnapshotSentryUpdateState.#ctor(System.Int32,System.Single,System.Single,System.Int32,System.Single,System.Single,System.Int32,System.Boolean,System.Single,System.Single,System.Int32)">
+            <summary>
+            Lightweight sentry update for delta compression. Contains only frequently-changing fields.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Protocol.ChannelType">
+            <summary>
+            Logical delivery channels. A backend maps these channels to its own streams,
+            queues, or lanes; the protocol does not depend on a particular transport.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Protocol.ReliableOrderedAttribute">
+            <summary>
+            Complete events that must be delivered in semantic send order.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Protocol.ReliableUnorderedAttribute">
+            <summary>
+            Complete events that must not be dropped, but do not require one global order.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Protocol.LastWinsAttribute">
+            <summary>
+            Complete, repairable state where an older instance may be replaced by a newer one.
+            Omitting the channel lets the backend choose its default latest-state lane.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Protocol.MalformedS2CException">
+            <summary>
+            Non-fatal by default: a complete server-to-client frame was delivered but could
+            not be accepted by the protocol/schema layer.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Protocol.Protocol64FrameCodec.ComputeIntegrity(System.ReadOnlySpan{System.Byte})">
+            <summary>
+            Computes the protocol-64 CRC32 over the complete frame while treating
+            the integrity field itself as zero. This covers both the envelope and
+            the encoded body, so corruption cannot be mistaken for a schema error.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Protocol.Protocol64InputCommand">
+            <summary>
+            A one-shot input transition. Held buttons remain in InputState; transitions
+            use this event so a short press has a durable identity and cannot disappear
+            between two latest-state samples.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Protocol.Protocol64InputCommand.#ctor(System.UInt64,System.UInt32,OpenGarrison.Protocol.Protocol64InputCommandKind,OpenGarrison.Protocol.InputButtons,System.Single,System.Single,System.UInt32,System.UInt32)">
+            <summary>
+            A one-shot input transition. Held buttons remain in InputState; transitions
+            use this event so a short press has a durable identity and cannot disappear
+            between two latest-state samples.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Protocol.Protocol64LegacyMessageSchema`1">
+             <summary>
+             Protocol-64 migration adapter for the existing OG2 message codec.
+            
+             The legacy codec owns the body bytes for this slice. The protocol-64 schema
+             still owns the stable event ID, direction, delivery contract, size limit, and
+             complete-body validation. This lets backends select a schema by event ID and
+             concrete event type without switching on <see cref="T:OpenGarrison.Protocol.MessageType"/>.
+             </summary>
+        </member>
+        <member name="M:OpenGarrison.Protocol.Protocol64SchemaRegistryFactory.CreateDefault">
+            <summary>
+            Creates the complete protocol-64 registry for the current OG2 message set.
+            Every current <see cref="T:OpenGarrison.Protocol.IProtocolMessage"/> family receives one stable
+            event ID and one concrete schema type.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Protocol.Protocol64EventId">
+            <summary>
+            Stable IDs for the current protocol message families. Concrete protocol-64
+            schemas may use these IDs or allocate new IDs without depending on MessageType.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Protocol.Protocol64EventSchema`1">
+            <summary>
+            Base class for a dedicated protocol-64 schema. The BinaryReader position check
+            makes trailing body bytes a schema fault instead of silently accepting a prefix.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Protocol.Protocol64EventSchema`1.Validate(`0)">
+            <summary>
+            Schema-specific validation runs after the body has been consumed exactly.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Protocol.Protocol64StateEventId">
+            <summary>
+            Stable IDs for the disjoint authoritative-state slice. These IDs are not
+            added to the legacy/default registry until a canonical backend opts in.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Protocol.Protocol64PlayerIdentity">
+            <summary>Stable identity for a player slot, including reuse generation.</summary>
+        </member>
+        <member name="M:OpenGarrison.Protocol.Protocol64PlayerIdentity.#ctor(System.UInt16,System.UInt64,System.UInt32)">
+            <summary>Stable identity for a player slot, including reuse generation.</summary>
+        </member>
+        <member name="T:OpenGarrison.Protocol.Protocol64EquipmentState">
+            <summary>
+            Equipment identity travels with ammo and the input acknowledgement, so a
+            locker change never depends on a separately populated snapshot string cache.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Protocol.Protocol64EquipmentState.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Boolean,System.Int32,System.Byte,System.Byte)">
+            <summary>
+            Equipment identity travels with ammo and the input acknowledgement, so a
+            locker change never depends on a separately populated snapshot string cache.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Protocol.Protocol64UmbrellaState">
+            <summary>A complete player record with inline class identity and health.</summary>
+        </member>
+        <member name="M:OpenGarrison.Protocol.Protocol64UmbrellaState.#ctor(System.Int32,System.Boolean,System.Boolean,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Double)">
+            <summary>A complete player record with inline class identity and health.</summary>
+        </member>
+        <member name="T:OpenGarrison.Protocol.Protocol64RosterState">
+            <summary>
+            A complete roster view for the event's scope. Removal is explicit and also
+            carries the generation so a late event cannot remove a replacement player.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Protocol.Protocol64RosterState.#ctor(System.UInt64,System.UInt32,System.Collections.Generic.IReadOnlyList{OpenGarrison.Protocol.Protocol64PlayerIdentity},System.Collections.Generic.IReadOnlyList{OpenGarrison.Protocol.Protocol64PlayerIdentity})">
+            <summary>
+            A complete roster view for the event's scope. Removal is explicit and also
+            carries the generation so a late event cannot remove a replacement player.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Protocol.Protocol64ProjectileLifecycle">
+            <summary>
+            Lifecycle records repeat the complete identity and current state needed to
+            apply a spawn/replacement atomically. Despawn records keep the same identity
+            fields while their motion values are ignored by the receiver.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Protocol.Protocol64ProjectileLifecycle.#ctor(OpenGarrison.Protocol.Protocol64ProjectileLifecycleKind,System.UInt64,System.UInt32,OpenGarrison.Protocol.Protocol64ProjectileKind,System.UInt32,System.UInt16,System.UInt32,System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean,System.UInt32,System.Single,System.Boolean,System.Byte,System.Boolean,System.Single,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Single,System.Single,System.Boolean,System.Boolean,System.Byte,System.Byte,System.Boolean,System.Byte,System.Int32,System.Byte,System.Boolean,System.UInt16,System.Boolean,System.Single,System.Single,System.Single,System.Single,System.Boolean,System.Single,System.Boolean,System.Byte)">
+            <summary>
+            Lifecycle records repeat the complete identity and current state needed to
+            apply a spawn/replacement atomically. Despawn records keep the same identity
+            fields while their motion values are ignored by the receiver.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Protocol.Protocol64StateResyncResponse">
+            <summary>
+            A complete replacement view. It is intentionally usable without any prior
+            player/projectile baseline; removed identities make replacement explicit.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Protocol.Protocol64StateResyncResponse.#ctor(System.UInt64,System.UInt64,System.UInt32,System.Collections.Generic.IReadOnlyList{OpenGarrison.Protocol.Protocol64PlayerState},System.Collections.Generic.IReadOnlyList{OpenGarrison.Protocol.Protocol64PlayerIdentity},System.Collections.Generic.IReadOnlyList{OpenGarrison.Protocol.Protocol64ProjectileState},System.Collections.Generic.IReadOnlyList{OpenGarrison.Protocol.Protocol64ProjectileIdentity})">
+            <summary>
+            A complete replacement view. It is intentionally usable without any prior
+            player/projectile baseline; removed identities make replacement explicit.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Protocol.Protocol64RetransmitRequest">
+            <summary>
+            Backend-neutral control event used to request a replacement for a frame or
+            stream range. The malformed bytes are never echoed into the control stream.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Protocol.Protocol64RetransmitRequest.#ctor(System.Guid,System.UInt64,OpenGarrison.Protocol.Protocol64TransportRepairReason,System.Int32,OpenGarrison.Protocol.ChannelType,OpenGarrison.Protocol.Protocol64DeliveryKind,System.Nullable{System.UInt64},System.Nullable{System.UInt64},System.Nullable{System.UInt64},System.Boolean,System.Int32)">
+            <summary>
+            Backend-neutral control event used to request a replacement for a frame or
+            stream range. The malformed bytes are never echoed into the control stream.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Protocol.Protocol64RetransmitResponse">
+            <summary>
+            Transport metadata sent as the first frame on a dedicated retransmit
+            stream. QUIC streams are independent, so the receiver needs the original
+            logical lane and sequence range before it can feed the replacement into its
+            backend-neutral ordering scheduler. It is consumed by the backend and is
+            never exposed as gameplay.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Protocol.Protocol64RetransmitResponse.#ctor(System.Guid,System.UInt64,System.Boolean,System.Int32,OpenGarrison.Protocol.ChannelType,OpenGarrison.Protocol.Protocol64DeliveryKind,System.Int32,System.UInt64,System.UInt64)">
+            <summary>
+            Transport metadata sent as the first frame on a dedicated retransmit
+            stream. QUIC streams are independent, so the receiver needs the original
+            logical lane and sequence range before it can feed the replacement into its
+            backend-neutral ordering scheduler. It is consumed by the backend and is
+            never exposed as gameplay.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Protocol.ProtocolCodec.Serialize(OpenGarrison.Protocol.IProtocolMessage)">
+            <summary>
+            Serialize a protocol message with optional compression.
+            Uses default compression settings (compression enabled for snapshots).
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Protocol.ProtocolCodec.Serialize(OpenGarrison.Protocol.IProtocolMessage,OpenGarrison.Protocol.ProtocolCompressionSettings)">
+            <summary>
+            Serialize a protocol message with custom compression settings.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Protocol.ProtocolCodec.TryDeserialize(System.Byte[],OpenGarrison.Protocol.IProtocolMessage@)">
+            <summary>
+            Deserialize a protocol message, automatically decompressing if needed.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Protocol.ProtocolCodec.TryDeserialize(System.ReadOnlySpan{System.Byte},OpenGarrison.Protocol.IProtocolMessage@)">
+            <summary>
+            Deserialize a protocol message from a span, automatically decompressing if needed.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Protocol.ProtocolCodecCompression">
+            <summary>
+            Handles compression/decompression of protocol messages using LZ4.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Protocol.ProtocolCodecCompression.TryCompress(System.Byte[],OpenGarrison.Protocol.ProtocolCompressionSettings)">
+            <summary>
+            Compress data using LZ4.
+            Returns null if compression failed or didn't save space.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Protocol.ProtocolCodecCompression.Decompress(System.Byte[])">
+            <summary>
+            Decompress LZ4-compressed data.
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Protocol.ProtocolCodecCompression.PrependEncoding(System.Byte[],OpenGarrison.Protocol.MessageEncoding)">
+            <summary>
+            Prepend encoding byte to payload.
+            Format: [encoding:1 byte][payload:N bytes]
+            </summary>
+        </member>
+        <member name="M:OpenGarrison.Protocol.ProtocolCodecCompression.ReadEncoding(System.Byte[])">
+            <summary>
+            Read encoding byte and extract payload.
+            Returns the encoding type and the payload without the encoding byte.
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Protocol.ProtocolCompressionSettings">
+            <summary>
+            Configuration for protocol message compression.
+            </summary>
+        </member>
+        <member name="F:OpenGarrison.Protocol.ProtocolCompressionSettings.Default">
+            <summary>
+            Shared instance with compression enabled (default).
+            </summary>
+        </member>
+        <member name="F:OpenGarrison.Protocol.ProtocolCompressionSettings.Disabled">
+            <summary>
+            Shared instance with compression disabled.
+            Useful for debugging or compatibility fallback.
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Protocol.ProtocolCompressionSettings.EnableCompression">
+            <summary>
+            Whether to enable LZ4 compression for messages.
+            Default: true
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Protocol.ProtocolCompressionSettings.MinimumBytesForCompression">
+            <summary>
+            Minimum message size (in bytes) before compression is attempted.
+            Messages smaller than this are sent uncompressed.
+            Default: 200 bytes
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Protocol.ProtocolCompressionSettings.CompressOnlySnapshots">
+            <summary>
+            If true, only compress snapshot messages (most bandwidth-heavy).
+            If false, compress all message types.
+            Default: true (snapshots only)
+            </summary>
+        </member>
+        <member name="P:OpenGarrison.Protocol.ProtocolCompressionSettings.UseCompressionOnlyIfSmaller">
+            <summary>
+            If true, only use compressed payload if it's actually smaller than uncompressed.
+            Default: true
+            </summary>
+        </member>
+        <member name="T:OpenGarrison.Protocol.MessageEncoding">
+            <summary>
+            Indicates the encoding format of a protocol message payload.
+            </summary>
+        </member>
+        <member name="F:OpenGarrison.Protocol.MessageEncoding.None">
+            <summary>No compression - raw serialized data</summary>
+        </member>
+        <member name="F:OpenGarrison.Protocol.MessageEncoding.LZ4">
+            <summary>LZ4 compressed data</summary>
+        </member>
+    </members>
+</doc>

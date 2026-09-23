@@ -1,0 +1,15 @@
+{
+  "id": "ability.scout-utility",
+  "kind": "Ability",
+  "displayName": "Scout Utility",
+  "behaviorId": "builtin.utility.scout",
+  "ability": {
+    "category": "utility",
+    "channel": "utility",
+    "activation": "pressed",
+    "executorId": "builtin.ability.scout_taunt",
+    "tags": [ "taunt" ]
+  },
+  "ammo": {},
+  "presentation": {}
+}

@@ -1,0 +1,22 @@
+{
+  "id": "ability.civilian-taunt",
+  "kind": "Ability",
+  "displayName": "Money Taunt",
+  "behaviorId": "builtin.ability.civvie_taunt",
+  "ability": {
+    "category": "taunt",
+    "channel": "taunt",
+    "activation": "pressed",
+    "executorId": "builtin.ability.civvie_taunt",
+    "tags": [ "taunt", "healing" ],
+    "parameters": {
+      "healAmount": 15,
+      "healRadius": 120,
+      "healFrameIndex": 9,
+      "pogoTrickDurationTicks": 18,
+      "pogoTrickFrameCount": 3
+    }
+  },
+  "ammo": {},
+  "presentation": {}
+}
